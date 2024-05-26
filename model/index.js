@@ -27,14 +27,12 @@ exports.currencyModel = (currencies) => {
     // Table Header
     const headerRow = create("tr");
     const header = create("thead");
-    const currencyHeader = create("th", "Currency");
-    const currencyNameHeader = create("th", "Currency Name");
-    const countryFlagHeader = create("th", "Country");
-    const sellHeader = create("th", "TT Sell");
-    const buyHeader = create("th", "TT Buy");
+    const currencyNameHeader = create("th", "Country Name");
+    const countryFlagHeader = create("th", "Country Flag");
+    const sellHeader = create("th", "Sell Rate");
+    const buyHeader = create("th", "Buy Rate");
 
     appendInto(headerRow, [
-        currencyHeader,
         currencyNameHeader,
         countryFlagHeader,
         sellHeader,
@@ -49,10 +47,23 @@ exports.currencyModel = (currencies) => {
     let count = 0;
 
     ${JSON.stringify(allCurrencies)}.map(currency => {
-        if(count > 10) return; 
+        if(count > 10) return;
+        const formattedCountryName = currency["Currency Name"]
+            .replace("Chinese","China")
+            .replace("Australian","Australia")
+            .replace("Canadian","Canada")
+            .replace("Swiss","Switzerland")
+            .replace("US","United States")
+            .replace("Pound Sterling","Britain")
+            .replace("UAE","United Arab Emirates")
+            .replace("The Euro","European Union")
+            .replace(" Dirham","")
+            .replace(" Franc","")
+            .replace(" Dollar","")
+            .replace(" Renminbi","");
+            
         const bodyRow = create("tr");
-        const currencyBody = create("td", currency.Currency);
-        const currencyNameBody = create("td", currency["Currency Name"]);
+        const countryNameBody = create("td", formattedCountryName);
         const countryFlagBody = create("td");
         const countryFlag = create("img", null, "flag");
         countryFlag.setAttribute('src', currency.flag);
@@ -63,8 +74,7 @@ exports.currencyModel = (currencies) => {
             countryFlag
         ]);
         appendInto(bodyRow, [
-            currencyBody,
-            currencyNameBody,
+            countryNameBody,
             countryFlagBody,
             buyBody,
             sellBody,
