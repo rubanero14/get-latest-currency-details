@@ -11,10 +11,11 @@ app.get("/task1", async (req, res, next) => {
 });
 
 app.get("/task2", async (req, res, next) => {
-  const template = currencyTemplate.template(
-    currencyModel(await util.currencyValueExtractor())
+  res.send(
+    currencyTemplate.template(
+      currencyModel(await util.currencyValueExtractor())
+    )
   );
-  res.send(template);
 });
 
 app.get("/", async (req, res, next) => {
