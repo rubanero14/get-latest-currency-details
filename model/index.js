@@ -6,12 +6,12 @@ exports.currencyModel = (currencies) => {
   const allCurrencies = [...mainCurrencies];
   const allowedCcy = 10 - mainCurrencies.length;
 
-  let ccyCount = 1;
+  let ccyCount = 0;
 
   exoticCurrencies.map((item) => {
-    if (ccyCount <= allowedCcy) {
-      allCurrencies.push(item);
-    }
+    if (ccyCount >= allowedCcy) return;
+    allCurrencies.push(item);
+    ccyCount++;
   });
 
   return `
@@ -29,14 +29,14 @@ exports.currencyModel = (currencies) => {
     const header = create("thead");
     const currencyNameHeader = create("th", "Country Name");
     const countryFlagHeader = create("th", "Country Flag");
-    const sellHeader = create("th", "Sell Rate");
     const buyHeader = create("th", "Buy Rate");
+    const sellHeader = create("th", "Sell Rate");
 
     appendInto(headerRow, [
         currencyNameHeader,
         countryFlagHeader,
-        sellHeader,
         buyHeader,
+        sellHeader,
     ]);
     appendInto(header, [
         headerRow
