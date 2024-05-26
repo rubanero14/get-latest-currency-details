@@ -1,4 +1,4 @@
-const style = require("./style");
+const style = require("./styles");
 exports.template = (body) => `
     <!DOCTYPE html>
     <html lang="en">

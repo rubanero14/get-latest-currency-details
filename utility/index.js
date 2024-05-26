@@ -40,8 +40,8 @@ exports.currencyValueExtractor = async () => {
   };
 
   return [
-    ...(await getTableData(mainCurrencies)),
-    ...(await getTableData(exoticCurrencies)),
+    [...(await getTableData(mainCurrencies))],
+    [...(await getTableData(exoticCurrencies))],
   ];
 };
 
