@@ -17,6 +17,7 @@ app.get("/task2", async (req, res, next) => {
     const appendInto = ${util.appendInto};
     const body = document.querySelector('.container');
     const table = create("table", null, "table table-light table-bordered table-hover");
+    const tableWrapper = create("div", null, "table-responsive");
     
     // Last Updated
     const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"log d-flex justify-content-end mb-3");
@@ -45,7 +46,7 @@ app.get("/task2", async (req, res, next) => {
     const tableBody = create("tbody");
     let count = 0;
     currencies.map(currency => {
-      // if(count > 10) return; 
+      if(count > 10) return; 
       const bodyRow = create("tr");
       const currencyBody = create("td", currency.Currency);
       const currencyNameBody = create("td", currency["Currency Name"]);
@@ -75,9 +76,12 @@ app.get("/task2", async (req, res, next) => {
       header,
       tableBody
     ]);
+    appendInto(tableWrapper, [
+      table,
+    ]);
     appendInto(body, [
       log,
-      table,
+      tableWrapper,
     ]);
 
     setInterval(() => {
