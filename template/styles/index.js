@@ -1,4 +1,8 @@
 exports.styles = `
+  html {
+    height: 100%;
+  }
+
   .body {
     background-color: #145ED7;
     height: 100%;
@@ -6,6 +10,14 @@ exports.styles = `
 
   .log {
     font-weight: bold;
+  }
+
+  .text-custom {
+    color: #FFE000;
+    
+    &.bold {
+      font-weight: bold;
+    }
   }
 
   .btn.btn-custom {

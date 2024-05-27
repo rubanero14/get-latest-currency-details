@@ -198,22 +198,11 @@ exports.screen2Model = () => {
 exports.screen6Model = () => {
   return `
         const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "Tasks", "title text-center text-light mb-3");
-        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
-        const linkTask1 = create("a", "UI/UX");
-        const linkTask2 = create("a", "Web Scraper");
-
-        linkTask1.setAttribute('href', '/task1');
-        linkTask2.setAttribute('href', '/task2');
-        setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom me-2 mb-2 p-2'});
-
-        appendInto(linkWrapper, [
-            linkTask1,
-            linkTask2
-        ]);
+        const title1 = create("h1", "Terima Kasih", "title text-custom bold text-center mb-3");
+        const title2 = create("h1", "Thank You", "title text-custom text-center mb-3");
         appendInto(body, [
-            title,
-            linkWrapper
+            title1,
+            title2
         ]);
     `;
 };
