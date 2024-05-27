@@ -106,7 +106,7 @@ exports.homeModel = () => {
         const title = create("h1", "Tasks", "text-center text-light mb-3");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "UI/UX");
-        const linkTask2 = create("a", "Web Scraper");
+        const linkTask2 = create("a", "Website Scraping");
 
         linkTask1.setAttribute('href', '/task1');
         linkTask2.setAttribute('href', '/task2');
