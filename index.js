@@ -36,7 +36,7 @@ app.get("/", async (req, res, next) => {
 });
 
 app.get("*", function (req, res) {
-  res.status(404).send(template(layout.notFoundModel(), "404: Not Found"));
+  res.status(404).send(template(layout.notFoundModel(), "Not Found"));
 });
 
 app.listen(PORT, () => {
