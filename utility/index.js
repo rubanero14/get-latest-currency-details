@@ -49,7 +49,7 @@ exports.create = (ele, value = null, classes = "") => {
   const el = document.createElement(ele);
   el.setAttribute("class", classes);
   if (value !== null) {
-    el.textContent = value;
+    el.innerHTML = value;
   }
   return el;
 };

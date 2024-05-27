@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "rollup hello/function.js --file netlify/functions/hello.js --format cjs && npm run test:functions && npm run build"
   },
   "author": "",
   "license": "ISC",

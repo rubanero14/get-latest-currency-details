@@ -6,8 +6,8 @@ exports.currencyModel = (currencies) => {
   const allCurrencies = [...mainCurrencies];
   const allowedCcy = 10 - mainCurrencies.length;
 
+  // Allow only first ten currencies to display at a time
   let ccyCount = 0;
-
   exoticCurrencies.map((item) => {
     if (ccyCount >= allowedCcy) return;
     allCurrencies.push(item);
@@ -17,12 +17,15 @@ exports.currencyModel = (currencies) => {
   return `
     const create = ${util.create};
     const appendInto = ${util.appendInto};
-    const body = document.querySelector('.container');
-    const table = create("table", null, "table table-light table-bordered table-hover");
+    const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
     const tableWrapper = create("div", null, "table-responsive");
+    const linkTask1 = create("a", "&#x25c0; Back to Homepage");
+
+    linkTask1.setAttribute('href', '/');
+    linkTask1.setAttribute('class', 'mainNav btn btn-custom mb-2 p-2');
     
     // Last Updated
-    const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-secondary log d-flex justify-content-end mb-3");
+    const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-light log d-flex justify-content-end mb-3");
 
     // Table Header
     const headerRow = create("tr");
@@ -88,11 +91,12 @@ exports.currencyModel = (currencies) => {
     appendInto(table, [
         header,
         tableBody
-        ]);
-        appendInto(tableWrapper, [
+    ]);
+    appendInto(tableWrapper, [
         table,
-        ]);
-        appendInto(body, [
+    ]);
+    appendInto(body, [
+        linkTask1,
         log,
         tableWrapper,
     ]);
@@ -100,4 +104,125 @@ exports.currencyModel = (currencies) => {
     setInterval(() => {
         location.reload();
     }, 60000 * 60);`;
+};
+
+exports.homeModel = () => {
+  return `
+        const create = ${util.create};
+        const appendInto = ${util.appendInto};
+        const title = create("h1", "Tasks", "text-center text-light mb-3");
+        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+        const linkTask1 = create("a", "UI/UX");
+        const linkTask2 = create("a", "Web Scraper");
+
+        linkTask1.setAttribute('href', '/task1');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        linkTask2.setAttribute('href', '/task2');
+        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+
+        appendInto(linkWrapper, [
+            linkTask1,
+            linkTask2
+        ]);
+        appendInto(body, [
+            title,
+            linkWrapper
+        ]);
+    `;
+};
+
+exports.screen1Model = () => {
+  return `
+        const create = ${util.create};
+        const appendInto = ${util.appendInto};
+        const title = create("h1", "Tasks", "title text-center text-light mb-3");
+        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+        const linkTask1 = create("a", "UI/UX");
+        const linkTask2 = create("a", "Web Scraper");
+
+        linkTask1.setAttribute('href', '/task1');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        linkTask2.setAttribute('href', '/task2');
+        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+
+        appendInto(linkWrapper, [
+            linkTask1,
+            linkTask2
+        ]);
+        appendInto(body, [
+            title,
+            linkWrapper
+        ]);
+    `;
+};
+
+exports.screen2Model = () => {
+  return `
+        const create = ${util.create};
+        const appendInto = ${util.appendInto};
+        const title = create("h1", "Tasks", "title text-center text-light mb-3");
+        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+        const linkTask1 = create("a", "UI/UX");
+        const linkTask2 = create("a", "Web Scraper");
+
+        linkTask1.setAttribute('href', '/task1');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        linkTask2.setAttribute('href', '/task2');
+        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+
+        appendInto(linkWrapper, [
+            linkTask1,
+            linkTask2
+        ]);
+        appendInto(body, [
+            title,
+            linkWrapper
+        ]);
+    `;
+};
+
+exports.screen6Model = () => {
+  return `
+        const create = ${util.create};
+        const appendInto = ${util.appendInto};
+        const title = create("h1", "Tasks", "title text-center text-light mb-3");
+        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+        const linkTask1 = create("a", "UI/UX");
+        const linkTask2 = create("a", "Web Scraper");
+
+        linkTask1.setAttribute('href', '/task1');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        linkTask2.setAttribute('href', '/task2');
+        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+
+        appendInto(linkWrapper, [
+            linkTask1,
+            linkTask2
+        ]);
+        appendInto(body, [
+            title,
+            linkWrapper
+        ]);
+    `;
+};
+
+exports.notFoundModel = () => {
+  return `
+        const create = ${util.create};
+        const appendInto = ${util.appendInto};
+        const title = create("h1", "404 Not Found", "title text-center text-light mb-3");
+        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+        const linkTask1 = create("a", "&#x25c0; Back to Homepage");
+
+        linkTask1.setAttribute('href', '/');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom p-2');
+
+        appendInto(linkWrapper, [
+            linkTask1,
+        ]);
+        appendInto(body, [
+            title,
+            linkWrapper
+        ]);
+    `;
 };
