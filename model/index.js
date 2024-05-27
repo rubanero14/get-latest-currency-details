@@ -103,7 +103,7 @@ exports.currencyModel = (currencies) => {
 exports.homeModel = () => {
   return `
         const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "Tasks", "text-center text-light mb-3");
+        const title = create("h1", "Tasks", "text-center text-light mb-5");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "UI/UX");
         const linkTask2 = create("a", "Website Scraping");
@@ -126,8 +126,8 @@ exports.homeModel = () => {
 exports.screen1Model = () => {
   return `
         const [create, appendInto, setAttr, createLabel] = [${util.create}, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}];
-        const title1 = create("span", "Sila pilih perkhidmatan", "title fw-bold d-flex justify-content-center text-light mb-2");
-        const title2 = create("span", "Please select a service", "title d-flex justify-content-center text-light mb-5");
+        const title1 = create("span", "Sila pilih perkhidmatan", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
+        const title2 = create("span", "Please select a service", "title text-center d-flex justify-content-center text-light mb-5");
         const linkWrapper = create("div", null, "text-center");
 
         // button labels
@@ -174,7 +174,8 @@ exports.screen1Model = () => {
 exports.screen2Model = () => {
   return `
         const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "Tasks", "title text-center text-light mb-3");
+        const title1 = create("span", "Sila masukkan nombor telefon anda untuk menerima notis tiket melalui SMS", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
+        const title2 = create("span", "Please enter your mobile number to receive notification via SMS", "title text-center d-flex justify-content-center text-light mb-5");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "UI/UX");
         const linkTask2 = create("a", "Web Scraper");
@@ -189,7 +190,8 @@ exports.screen2Model = () => {
             linkTask2
         ]);
         appendInto(body, [
-            title,
+            title1,
+            title2,
             linkWrapper
         ]);
     `;
@@ -198,8 +200,8 @@ exports.screen2Model = () => {
 exports.screen6Model = () => {
   return `
         const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title1 = create("h1", "Terima Kasih", "title text-custom bold text-center mb-3");
-        const title2 = create("h1", "Thank You", "title text-custom text-center mb-3");
+        const title1 = create("span", "Terima Kasih", "title text-custom bold text-center d-flex justify-content-center mb-3");
+        const title2 = create("span", "Thank You", "title text-custom text-center d-flex justify-content-center mb-3");
         appendInto(body, [
             title1,
             title2
@@ -210,7 +212,7 @@ exports.screen6Model = () => {
 exports.notFoundModel = () => {
   return `
         const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "404: Not Found", "title text-center text-light mb-3");
+        const title = create("h1", "404: Not Found", "title text-center text-light mb-5");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "&#x25c0; Back to Homepage");
 

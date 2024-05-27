@@ -12,13 +12,20 @@ exports.styles = `
     font-weight: bold;
   }
 
-  .text-custom {
-    color: #FFE000;
+  .title {
     font-weight: 400;
+
+    &.text-custom {
+      font-size: 30px;
+    }
     
     &.bold {
       font-weight: 700;
     }
+  }
+
+  .text-custom {
+    color: #FFE000;
   }
 
   .btn.btn-custom {
@@ -27,7 +34,7 @@ exports.styles = `
     font-weight: 900;
     border-radius: 100px;
     font-size: larger;
-
+    
     & span.text-center {
       font-weight: 500;
     }
