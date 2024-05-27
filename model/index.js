@@ -1,14 +1,12 @@
 const util = require("../utility");
 
 exports.currencyModel = (currencies) => {
-  const mainCurrencies = [...currencies[0]];
-  const exoticCurrencies = [...currencies[1]];
-  const allCurrencies = [...mainCurrencies];
-  const allowedCcy = 10 - mainCurrencies.length;
+  const allCurrencies = [...currencies[0]];
+  const allowedCcy = 10 - allCurrencies.length;
 
   // Allow only first ten currencies to display at a time
   let ccyCount = 0;
-  exoticCurrencies.map((item) => {
+  [...currencies[1]].map((item) => {
     if (ccyCount >= allowedCcy) return;
     allCurrencies.push(item);
     ccyCount++;
