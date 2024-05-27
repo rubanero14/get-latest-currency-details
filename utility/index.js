@@ -59,3 +59,23 @@ exports.appendInto = (main, children = []) => {
     main.appendChild(child);
   }
 };
+
+exports.setAttr = (els = [], attrs = {}) => {
+  els.forEach((el) => {
+    for (const attr in attrs) {
+      el.setAttribute(attr, attrs[attr]);
+    }
+  });
+};
+
+exports.createLabel = (malay, english) => {
+  return create(
+    "span",
+    `
+    <b class="text-center">${malay}</b>
+    <br />
+    <span class="text-center">${english}</span>
+  `,
+    "title mb-2"
+  );
+};

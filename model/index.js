@@ -15,8 +15,7 @@ exports.currencyModel = (currencies) => {
   });
 
   return `
-    const create = ${util.create};
-    const appendInto = ${util.appendInto};
+    const [create, appendInto] = [${util.create}, ${util.appendInto}];
     const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
     const tableWrapper = create("div", null, "table-responsive");
     const linkTask1 = create("a", "&#x25c0; Back to Homepage");
@@ -85,9 +84,8 @@ exports.currencyModel = (currencies) => {
         appendInto(tableBody, [
             bodyRow
         ]);
-            count++;
+        count++;
     });
-
     appendInto(table, [
         header,
         tableBody
@@ -108,17 +106,15 @@ exports.currencyModel = (currencies) => {
 
 exports.homeModel = () => {
   return `
-        const create = ${util.create};
-        const appendInto = ${util.appendInto};
+        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
         const title = create("h1", "Tasks", "text-center text-light mb-3");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "UI/UX");
         const linkTask2 = create("a", "Web Scraper");
 
         linkTask1.setAttribute('href', '/task1');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
         linkTask2.setAttribute('href', '/task2');
-        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom me-2 mb-2 p-2'});
 
         appendInto(linkWrapper, [
             linkTask1,
@@ -133,52 +129,22 @@ exports.homeModel = () => {
 
 exports.screen1Model = () => {
   return `
-        const create = ${util.create};
-        const appendInto = ${util.appendInto};
+        const [create, appendInto, setAttr, createLabel] = [${util.create}, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}];
         const title1 = create("span", "Sila pilih perkhidmatan", "title fw-bold d-flex justify-content-center text-light mb-2");
         const title2 = create("span", "Please select a service", "title d-flex justify-content-center text-light mb-5");
         const linkWrapper = create("div", null, "text-center");
 
         // button labels
-        const label1 = create("span", 
-            \`
-                <b class="text-center">Pascabayar</b>
-                <br />
-                <span class="text-center">Postpaid</span>
-            \`, 
-        "title mb-2");
-        const label2 = create("span", \`
-                <b class="text-center">Peranti Rumah</b>
-                <br />
-                <span class="text-center">Home Fibre</span>
-            \`, 
-        "title mb-2");
-        const label3 = create("span", \`
-                <b class="text-center">Tawaran Korporat</b>
-                <br />
-                <span class="text-center">Corporate Deals</span>
-            \`,
-        "title mb-2");
-        const label4 = create("span", \`
-                <b class="text-center">Perkhidmatan lain-lain</b>
-                <br />
-                <span class="text-center">Other Services</span>
-            \`,
-        "title mb-2");
-
-        const linkTask1 = create("a");
-        const linkTask2 = create("a");
-        const linkTask3 = create("a");
-        const linkTask4 = create("a");
-
-        linkTask1.setAttribute('href', '/task1/screen2');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
-        linkTask2.setAttribute('href', '/task1/screen2');
-        linkTask2.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
-        linkTask3.setAttribute('href', '/task1/screen2');
-        linkTask3.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
-        linkTask4.setAttribute('href', '/task1/screen2');
-        linkTask4.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
+        const label1 = createLabel("Pascabayar", "Postpaid");
+        const label2 = createLabel("Peranti Rumah", "Home Fibre");
+        const label3 = createLabel("Tawaran Korporat", "Corporate Deals");
+        const label4 = createLabel("Perkhidmatan lain-lain", "Other Services");
+        const [linkTask1, linkTask2, linkTask3, linkTask4] = [create("a"), create("a"), create("a"), create("a")];
+        
+        setAttr([linkTask1, linkTask2, linkTask3, linkTask4], {
+            'href': '/task1/screen2',
+            'class': 'mainNav btn btn-custom text-center p-2 mb-4'
+        })
 
         appendInto(linkTask1, [
             label1,
@@ -192,7 +158,6 @@ exports.screen1Model = () => {
         appendInto(linkTask4, [
             label4,
         ]);
-
         appendInto(linkWrapper, [
             linkTask1,
             create("br"),
@@ -201,7 +166,6 @@ exports.screen1Model = () => {
             linkTask3,
             create("br"),
             linkTask4,
-            create("br")
         ]);
         appendInto(body, [
             title1,
@@ -213,8 +177,7 @@ exports.screen1Model = () => {
 
 exports.screen2Model = () => {
   return `
-        const create = ${util.create};
-        const appendInto = ${util.appendInto};
+        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
         const title = create("h1", "Tasks", "title text-center text-light mb-3");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "UI/UX");
@@ -238,17 +201,15 @@ exports.screen2Model = () => {
 
 exports.screen6Model = () => {
   return `
-        const create = ${util.create};
-        const appendInto = ${util.appendInto};
+        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
         const title = create("h1", "Tasks", "title text-center text-light mb-3");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "UI/UX");
         const linkTask2 = create("a", "Web Scraper");
 
         linkTask1.setAttribute('href', '/task1');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
         linkTask2.setAttribute('href', '/task2');
-        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom me-2 mb-2 p-2'});
 
         appendInto(linkWrapper, [
             linkTask1,
@@ -263,14 +224,15 @@ exports.screen6Model = () => {
 
 exports.notFoundModel = () => {
   return `
-        const create = ${util.create};
-        const appendInto = ${util.appendInto};
+        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
         const title = create("h1", "404 Not Found", "title text-center text-light mb-3");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "&#x25c0; Back to Homepage");
 
-        linkTask1.setAttribute('href', '/');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom p-2');
+        setAttr([linkTask1], {
+            'href': '/',
+            'class': 'mainNav btn btn-custom me-2 mb-2 p-2'
+        });
 
         appendInto(linkWrapper, [
             linkTask1,
