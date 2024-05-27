@@ -19,7 +19,7 @@ exports.currencyModel = (currencies) => {
     const linkTask1 = create("a", "&#x25c0; Back to Homepage");
 
     linkTask1.setAttribute('href', '/');
-    linkTask1.setAttribute('class', 'mainNav btn btn-custom mb-2 p-2');
+    linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
     
     // Last Updated
     const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-light log d-flex justify-content-end mb-3");
@@ -110,7 +110,7 @@ exports.homeModel = () => {
 
         linkTask1.setAttribute('href', '/task1');
         linkTask2.setAttribute('href', '/task2');
-        setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom me-2 mb-2 p-2'});
+        setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
 
         appendInto(linkWrapper, [
             linkTask1,
@@ -139,7 +139,7 @@ exports.screen1Model = () => {
         
         setAttr([linkTask1, linkTask2, linkTask3, linkTask4], {
             'href': '/task1/screen2',
-            'class': 'mainNav btn btn-custom text-center p-2 mb-4'
+            'class': 'mainNav btn btn-custom text-center p-1 mb-3'
         })
 
         appendInto(linkTask1, [
@@ -181,9 +181,10 @@ exports.screen2Model = () => {
         const linkTask2 = create("a", "Web Scraper");
 
         linkTask1.setAttribute('href', '/task1');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
         linkTask2.setAttribute('href', '/task2');
-        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        setAttr([linkTask1, linkTask2], {
+            'class': 'mainNav btn btn-custom text-center p-1 me-2 mb-3'
+        })
 
         appendInto(linkWrapper, [
             linkTask1,
@@ -218,7 +219,7 @@ exports.notFoundModel = () => {
 
         setAttr([linkTask1], {
             'href': '/',
-            'class': 'mainNav btn btn-custom me-2 mb-2 p-2'
+            'class': 'mainNav btn btn-custom mb-3 p-1'
         });
 
         appendInto(linkWrapper, [
