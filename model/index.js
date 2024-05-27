@@ -210,7 +210,7 @@ exports.screen6Model = () => {
 exports.notFoundModel = () => {
   return `
         const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "404 Not Found", "title text-center text-light mb-3");
+        const title = create("h1", "404: Not Found", "title text-center text-light mb-3");
         const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
         const linkTask1 = create("a", "&#x25c0; Back to Homepage");
 
