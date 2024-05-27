@@ -14,9 +14,10 @@ exports.styles = `
 
   .text-custom {
     color: #FFE000;
+    font-weight: 400;
     
     &.bold {
-      font-weight: bold;
+      font-weight: 700;
     }
   }
 
