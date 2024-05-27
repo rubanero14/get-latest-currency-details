@@ -1,4 +1,4 @@
-# To run this app locally, run the following commands below in your terminal;
+# To run this app locally, copy and run the following commands in your local machine as below;
 
 ```
 git clone https://github.com/rubanero14/get-latest-currency-details.git

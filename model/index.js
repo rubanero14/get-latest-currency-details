@@ -2,14 +2,14 @@ const util = require("../utility");
 
 exports.currencyModel = (currencies) => {
   const allCurrencies = [...currencies[0]];
-  const allowedCcy = 10 - allCurrencies.length;
+  const allowedCcyCount = 10 - allCurrencies.length;
 
   // Allow only first ten currencies to display at a time
-  let ccyCount = 0;
+  let count = 0;
   [...currencies[1]].map((item) => {
-    if (ccyCount >= allowedCcy) return;
+    if (count >= allowedCcyCount) return;
     allCurrencies.push(item);
-    ccyCount++;
+    count++;
   });
 
   return `
@@ -47,7 +47,6 @@ exports.currencyModel = (currencies) => {
     let count = 0;
 
     ${JSON.stringify(allCurrencies)}.map(currency => {
-        if(count > 10) return;
         const formattedCountryName = currency["Currency Name"]
             .replace("Chinese","China")
             .replace("Australian","Australia")
@@ -82,7 +81,6 @@ exports.currencyModel = (currencies) => {
         appendInto(tableBody, [
             bodyRow
         ]);
-        count++;
     });
     appendInto(table, [
         header,
