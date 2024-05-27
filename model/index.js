@@ -135,22 +135,77 @@ exports.screen1Model = () => {
   return `
         const create = ${util.create};
         const appendInto = ${util.appendInto};
-        const title = create("h1", "Tasks", "title text-center text-light mb-3");
-        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
-        const linkTask1 = create("a", "UI/UX");
-        const linkTask2 = create("a", "Web Scraper");
+        const title1 = create("span", "Sila pilih perkhidmatan", "title fw-bold d-flex justify-content-center text-light mb-2");
+        const title2 = create("span", "Please select a service", "title d-flex justify-content-center text-light mb-5");
+        const linkWrapper = create("div", null, "text-center");
 
-        linkTask1.setAttribute('href', '/task1');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
-        linkTask2.setAttribute('href', '/task2');
-        linkTask2.setAttribute('class', 'mainNav btn btn-custom me-2 mb-2 p-2');
+        // button labels
+        const label1 = create("span", 
+            \`
+                <b class="text-center">Pascabayar</b>
+                <br />
+                <span class="text-center">Postpaid</span>
+            \`, 
+        "title mb-2");
+        const label2 = create("span", \`
+                <b class="text-center">Peranti Rumah</b>
+                <br />
+                <span class="text-center">Home Fibre</span>
+            \`, 
+        "title mb-2");
+        const label3 = create("span", \`
+                <b class="text-center">Tawaran Korporat</b>
+                <br />
+                <span class="text-center">Corporate Deals</span>
+            \`,
+        "title mb-2");
+        const label4 = create("span", \`
+                <b class="text-center">Perkhidmatan lain-lain</b>
+                <br />
+                <span class="text-center">Other Services</span>
+            \`,
+        "title mb-2");
+
+        const linkTask1 = create("a");
+        const linkTask2 = create("a");
+        const linkTask3 = create("a");
+        const linkTask4 = create("a");
+
+        linkTask1.setAttribute('href', '/task1/screen2');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
+        linkTask2.setAttribute('href', '/task1/screen2');
+        linkTask2.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
+        linkTask3.setAttribute('href', '/task1/screen2');
+        linkTask3.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
+        linkTask4.setAttribute('href', '/task1/screen2');
+        linkTask4.setAttribute('class', 'mainNav btn btn-custom text-center p-2 mb-4');
+
+        appendInto(linkTask1, [
+            label1,
+        ]);
+        appendInto(linkTask2, [
+            label2,
+        ]);
+        appendInto(linkTask3, [
+            label3,
+        ]);
+        appendInto(linkTask4, [
+            label4,
+        ]);
 
         appendInto(linkWrapper, [
             linkTask1,
-            linkTask2
+            create("br"),
+            linkTask2,
+            create("br"),
+            linkTask3,
+            create("br"),
+            linkTask4,
+            create("br")
         ]);
         appendInto(body, [
-            title,
+            title1,
+            title2,
             linkWrapper
         ]);
     `;

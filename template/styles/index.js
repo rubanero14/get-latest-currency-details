@@ -11,8 +11,13 @@ exports.styles = `
   .btn.btn-custom {
     background-color: #FFE000;
     color: #112568;
-    font-weight: bold;
+    font-weight: 900;
     border-radius: 100px;
+    font-size: larger;
+
+    & span.text-center {
+      font-weight: 500;
+    }
   }
 
   .flag {
@@ -24,7 +29,7 @@ exports.styles = `
   .mainNav {
     text-decoration: none;
     color: #999;
-    width: 200px;
+    width: 300px;
   }
 
   .table-responsive {
