@@ -18,7 +18,7 @@ exports.styles = `
     &.text-custom {
       font-size: 30px;
     }
-    
+
     &.bold {
       font-weight: 700;
     }
@@ -33,7 +33,6 @@ exports.styles = `
     color: #112568;
     font-weight: 900;
     border-radius: 100px;
-    font-size: larger;
     
     & span.text-center {
       font-weight: 500;
