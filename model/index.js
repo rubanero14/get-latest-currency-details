@@ -1,6 +1,13 @@
 const util = require("../utility");
 
-exports.currencyModel = (currencies, timerInMiliseconds = 10000) => {
+/**
+ * Returns a string of scripts to be injected into DOM for web scraping page
+ *
+ * @param {Object} currencies - Object containing scraped currency data
+ * @param {number} timerInMiliseconds - timer in miliseconds for auto refresh intervals
+ * @returns {string} JavaScript code injection into DOM
+ */
+exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => {
   const allCurrencies = [...currencies[0]];
   const allowedCcyCount = 10 - allCurrencies.length;
 
