@@ -93,7 +93,9 @@ exports.currencyModel = (currencies) => {
     ]);
     appendInto(body, [
         linkTask1,
+        create("br"),
         log,
+        create("br"),
         tableWrapper,
     ]);
 
