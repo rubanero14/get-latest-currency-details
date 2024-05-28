@@ -56,6 +56,10 @@ exports.styles = `
     border-radius: 8px;
   }
 
+  th, td {
+    text-wrap: nowrap;
+  }
+  
   th:not(:first-child),
   td:not(:first-child) {
     text-align: center;
