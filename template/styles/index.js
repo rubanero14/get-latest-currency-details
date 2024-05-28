@@ -59,6 +59,7 @@ exports.styles = () => `
 
   .table-responsive {
     border-radius: 8px;
+    font-size: 13px;
   }
 
   th, td {
@@ -80,7 +81,9 @@ exports.styles = () => `
     }
   }
 
-  @media screen and (min-width: 300px) {
-
+  @media screen and (min-width: 480px) {
+    .table-responsive {
+      font-size: 16px;
+    }
   }
 `;

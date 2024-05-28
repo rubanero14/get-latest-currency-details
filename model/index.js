@@ -25,7 +25,7 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => {
     const tableWrapper = create("div", null, "table-responsive");
     const linkTask1 = create("a", "&#x25c0; Back to Homepage");
     
-    body.classList.add('container');
+    body.classList.add('container', 'p-0');
     
     linkTask1.setAttribute('href', '/');
     linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
@@ -208,7 +208,7 @@ exports.screen2Model = () => `
     const buttonLabel = createLabel("Dapatkan tiket", "Get a ticket");
 
     const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip");
-    const inputInvalidTooltip = create("div", "Please input mobile number", "invalid-tooltip");
+    const inputInvalidTooltip = create("div", "Please input valid mobile number, eg: 011-23456789", "invalid-tooltip");
 
     setAttr([form], {
         'class': 'row g-3 needs-validation text-center px-3',
@@ -218,7 +218,9 @@ exports.screen2Model = () => `
     })
     setAttr([input], {
         'class': 'form-control py-2 mt-2',
-        'type': 'number',
+        'type': 'text',
+        'inputmode': 'numeric',
+        'pattern': '[0]{1}[1]{1}[0-9]{1}-[1-9]{1}[0-9]{6,7}',
         'required': true
     })
     setAttr([select], {
