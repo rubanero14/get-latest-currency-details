@@ -24,7 +24,7 @@ exports.currencyModel = (currencies) => {
     linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
     
     // Last Updated
-    const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-light log d-flex justify-content-end");
+    const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-light log d-flex justify-content-end mb-2");
 
     // Table Header
     const headerRow = create("tr");
@@ -95,7 +95,6 @@ exports.currencyModel = (currencies) => {
         linkTask1,
         create("br"),
         log,
-        create("br"),
         tableWrapper,
     ]);
 
