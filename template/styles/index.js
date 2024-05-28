@@ -47,8 +47,8 @@ exports.styles = () => `
 
   .flag {
     width: auto;
-    height: 30px;
-    border-radius: 5px;
+    height: 20px;
+    border-radius: 3px;
   }
 
   .mainNav {
@@ -71,6 +71,10 @@ exports.styles = () => `
     text-align: center;
   }
 
+  .table-responsive {
+    font-size: 10px;
+  }
+
   @media screen and (max-width: 300px) {
     .mainNav {
       width: 100%;
@@ -84,6 +88,11 @@ exports.styles = () => `
   @media screen and (min-width: 480px) {
     .table-responsive {
       font-size: 16px;
+    }
+    
+    .flag {
+      height: 30px;
+      border-radius: 6px;
     }
   }
 `;

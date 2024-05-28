@@ -7,111 +7,124 @@ const util = require("../utility");
  * @param {number} timerInMiliseconds - timer in miliseconds for auto refresh intervals
  * @returns {string} JavaScript code injection into DOM
  */
-exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => {
-  const allCurrencies = [...currencies[0]];
-  const allowedCcyCount = 10 - allCurrencies.length;
-
-  // Allow only first ten currencies to display at a time
-  let count = 0;
-  [...currencies[1]].map((item) => {
-    if (count >= allowedCcyCount) return;
-    allCurrencies.push(item);
-    count++;
-  });
-
-  return `
+exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
+    // Currency data swap every 2 minutes
+    const swapInterval = 2 * 60 * 1000;
     const [create, appendInto] = [${util.create}, ${util.appendInto}];
-    const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
-    const tableWrapper = create("div", null, "table-responsive");
-    const linkTask1 = create("a", "&#x25c0; Back to Homepage");
-    
-    body.classList.add('container', 'p-0');
-    
-    linkTask1.setAttribute('href', '/');
-    linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
+    const data = ${JSON.stringify(currencies)};
+    const currentData = [];
+    let [leftIdx, rightIdx] = [0, 9];
     
     // Last Updated
     const now = new Date(Date.now());
     const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
-    ${util.timeToRefresh(timerInMiliseconds)}
 
-    // Table Header
-    const headerRow = create("tr");
-    const header = create("thead");
-    const currencyNameHeader = create("th", "Country Name");
-    const countryFlagHeader = create("th", "Country Flag");
-    const buyHeader = create("th", "Buy Rate");
-    const sellHeader = create("th", "Sell Rate");
+    const buildDOM = () => {
+        // reset data and DOM
+        body.innerHTML = "";
+        currentData.length = 0;
 
-    appendInto(headerRow, [
-        currencyNameHeader,
-        countryFlagHeader,
-        buyHeader,
-        sellHeader,
-    ]);
-    appendInto(header, [
-        headerRow
-    ]);
+        for (let i = leftIdx; i <= rightIdx; i++) {
+            currentData.push(data[i]);
+        }
 
-    // Table Body
-    const tableBody = create("tbody");
-    let count = 0;
+        const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
+        tableWrapper = create("div", null, "table-responsive");
+        const linkTask1 = create("a", "&#x25c0; Back to Homepage");
+        
+        body.classList.add('container', 'p-0');
+        
+        linkTask1.setAttribute('href', '/');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
 
-    ${JSON.stringify(allCurrencies)}.map(currency => {
-        const formattedCountryName = currency["Currency Name"]
-            .replace("Chinese","China")
-            .replace("Australian","Australia")
-            .replace("Canadian","Canada")
-            .replace("Swiss","Switzerland")
-            .replace("US","United States")
-            .replace("Pound Sterling","Britain")
-            .replace("UAE","United Arab Emirates")
-            .replace("The Euro","European Union")
-            .replace(" Dirham","")
-            .replace(" Franc","")
-            .replace(" Dollar","")
-            .replace(" Renminbi","");
-            
-        const bodyRow = create("tr");
-        const countryNameBody = create("td", formattedCountryName);
-        const countryFlagBody = create("td");
-        const countryFlag = create("img", null, "flag");
-        countryFlag.setAttribute('src', currency.flag);
-        const buyBody = create("td", currency["TT Buy"]);
-        const sellBody = create("td", currency["TT Sell"]);
+        // Table Header
+        const headerRow = create("tr");
+        const header = create("thead");
+        const currencyNameHeader = create("th", "Country Name");
+        const countryFlagHeader = create("th", "Country Flag");
+        const buyHeader = create("th", "Buy Rate");
+        const sellHeader = create("th", "Sell Rate");
 
-        appendInto(countryFlagBody, [
-            countryFlag
+        appendInto(headerRow, [
+            currencyNameHeader,
+            countryFlagHeader,
+            buyHeader,
+            sellHeader,
         ]);
-        appendInto(bodyRow, [
-            countryNameBody,
-            countryFlagBody,
-            buyBody,
-            sellBody,
+        appendInto(header, [
+            headerRow
         ]);
-        appendInto(tableBody, [
-            bodyRow
-        ]);
-    });
-    appendInto(table, [
-        header,
-        tableBody
-    ]);
-    appendInto(tableWrapper, [
-        table,
-    ]);
-    appendInto(body, [
-        linkTask1,
-        create("br"),
-        log,
-        timer,
-        tableWrapper,
-    ]);
 
-    setInterval(() => {
-        location.reload();
-    }, ${timerInMiliseconds});`;
-};
+        // Table Body
+        const tableBody = create("tbody");
+
+        currentData.map(currency => {
+            const formattedCountryName = currency["Currency Name"]
+                .replace("Chinese","China")
+                .replace("Australian","Australia")
+                .replace("Canadian","Canada")
+                .replace("Swiss","Switzerland")
+                .replace("US","United States")
+                .replace("Pound Sterling","Britain")
+                .replace("UAE","United Arab Emirates")
+                .replace("The Euro","European Union")
+                .replace(" Dirham","")
+                .replace(" Franc","")
+                .replace(" Dollar","")
+                .replace(" Renminbi","");
+                
+            const bodyRow = create("tr");
+            const countryNameBody = create("td", formattedCountryName);
+            const countryFlagBody = create("td");
+            const countryFlag = create("img", null, "flag");
+            countryFlag.setAttribute('src', currency.flag);
+            const buyBody = create("td", currency["TT Buy"]);
+            const sellBody = create("td", currency["TT Sell"]);
+
+            appendInto(countryFlagBody, [
+                countryFlag
+            ]);
+            appendInto(bodyRow, [
+                countryNameBody,
+                countryFlagBody,
+                buyBody,
+                sellBody,
+            ]);
+            appendInto(tableBody, [
+                bodyRow
+            ]);
+        });
+        appendInto(table, [
+            header,
+            tableBody
+        ]);
+        appendInto(tableWrapper, [
+            table,
+        ]);
+        appendInto(body, [
+            linkTask1,
+            create("br"),
+            log,
+            tableWrapper,
+        ]);
+
+        setInterval(() => {
+            location.reload();
+        }, ${timerInMiliseconds});
+
+        if((leftIdx + 10) > data.length - 1) {
+            [leftIdx, rightIdx] = [0, 9];
+        } else if((leftIdx + 10) < data.length - 1 && (rightIdx + 10) > data.length - 1) {
+            rightIdx = data.length - 1;
+            leftIdx += 10;
+        } else {
+            leftIdx += 10;
+            rightIdx += 10;
+        }
+    }
+    buildDOM();
+    setInterval(() => buildDOM(), swapInterval);
+`;
 
 exports.homeModel = () => `
     const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
@@ -200,7 +213,7 @@ exports.screen2Model = () => `
         'Singapore',
         'Thailand',
         'Indonesia'
-    ], "Please select valid country code..");
+    ], "Please select country code..");
     const input = create("input");
     const button = create("button", null, 'mainNav btn btn-custom text-center p-1 w-100 mt-4');
 
@@ -208,7 +221,7 @@ exports.screen2Model = () => `
     const inputLabel = createLabel("Nombor telefon", "Mobile number", "text-custom text-center mb-2");
     const buttonLabel = createLabel("Dapatkan tiket", "Get a ticket");
 
-    const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip");
+    const selectInvalidTooltip = create("div", "Please select a valid country code", "invalid-tooltip");
     const inputInvalidTooltip = create("div", "Please input valid mobile number, eg: 011-23456789", "invalid-tooltip");
 
     setAttr([form], {
