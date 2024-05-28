@@ -61,7 +61,7 @@ exports.styles = `
     text-align: center;
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 300px) {
     .mainNav {
       width: 100%;
     }
@@ -71,7 +71,7 @@ exports.styles = `
     }
   }
 
-  @media screen and (min-width: 576px) {
+  @media screen and (min-width: 300px) {
 
   }
 `;
