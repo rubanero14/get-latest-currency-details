@@ -173,28 +173,87 @@ exports.screen1Model = () => {
 
 exports.screen2Model = () => {
   return `
-        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
+        const [create, appendInto, setAttr, createLabel, createSelect] = [${util.create}, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}, ${util.createSelect}];
         const title1 = create("span", "Sila masukkan nombor telefon anda untuk menerima notis tiket melalui SMS", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
         const title2 = create("span", "Please enter your mobile number to receive notification via SMS", "title text-center d-flex justify-content-center text-light mb-5");
-        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
-        const linkTask1 = create("a", "UI/UX");
-        const linkTask2 = create("a", "Web Scraper");
+        const form = create("form");
 
-        linkTask1.setAttribute('href', '/task1');
-        linkTask2.setAttribute('href', '/task2');
-        setAttr([linkTask1, linkTask2], {
-            'class': 'mainNav btn btn-custom text-center p-1 me-2 mb-3'
+        const selectWrapper = create("div", null, "col-12 position-relative text-center");
+        const inputWrapper = create("div", null, "col-12 position-relative text-center");
+
+        const select = createSelect([
+            'Malaysia',
+            'Singapore',
+            'Thailand',
+            'Indonesia'
+        ]);
+        const input = create("input");
+        const button = create("button", null, 'mainNav btn btn-custom text-center p-1 mt-4');
+
+        const selectLabel = createLabel("Kod panggilan negara", "Country code", "text-custom text-center mb-2");
+        const inputLabel = createLabel("Nombor telefon", "Mobile number", "text-custom text-center mb-2");
+        const buttonLabel = createLabel("Dapatkan tiket", "Get a ticket");
+
+        const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip mb-4");
+        const inputInvalidTooltip = create("div", "Please input mobile number", "invalid-tooltip");
+
+        setAttr([form], {
+            'class': 'row g-3 needs-validation text-center',
+            'novalidate': true,
+            'action': '/task1/screen6',
+            'method': 'get'
         })
-
-        appendInto(linkWrapper, [
-            linkTask1,
-            linkTask2
+        setAttr([input], {
+            'class': 'form-control mt-2',
+            'type': 'number',
+            'required': true
+        })
+        setAttr([select], {
+            'class': 'form-select mt-2x',
+            'required': true
+        })
+        setAttr([button], {'type': 'submit'});
+        
+        appendInto(button, [buttonLabel]);
+        appendInto(selectWrapper, [
+            selectLabel,
+            select,
+            selectInvalidTooltip,
+        ]);
+        appendInto(inputWrapper, [
+            inputLabel,
+            input,
+            inputInvalidTooltip,
+        ]);
+        appendInto(form, [
+            selectWrapper,
+            inputWrapper,
+            button
         ]);
         appendInto(body, [
             title1,
             title2,
-            linkWrapper
+            form
         ]);
+
+        // Bootstrap form validation
+        (() => {
+            'use strict'
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+                }, false)
+            })
+        })()
     `;
 };
 

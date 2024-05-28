@@ -68,7 +68,7 @@ exports.setAttr = (els = [], attrs = {}) => {
   });
 };
 
-exports.createLabel = (malay, english) => {
+exports.createLabel = (malay, english, classes = "title mb-2") => {
   return create(
     "span",
     `
@@ -76,6 +76,17 @@ exports.createLabel = (malay, english) => {
     <br />
     <span class="text-center">${english}</span>
   `,
-    "title mb-2"
+    classes
   );
+};
+
+exports.createSelect = (values = [], placeholder = "") => {
+  const select = document.createElement("select");
+  for (const value of values) {
+    const optionEle = create("option");
+    optionEle.textContent = value === null ? placeholder : value;
+    select.appendChild(optionEle);
+    optionEle.setAttribute("value", value === null ? "" : value);
+  }
+  return select;
 };
