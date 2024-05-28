@@ -14,7 +14,7 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
     const data = ${JSON.stringify(currencies)};
     const currentData = [];
     let [leftIdx, rightIdx] = [0, 9];
-    
+
     // Last Updated
     const now = new Date(Date.now());
     const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
@@ -24,6 +24,7 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
         body.innerHTML = "";
         currentData.length = 0;
 
+        // Data table display swapping logic
         for (let i = leftIdx; i <= rightIdx; i++) {
             currentData.push(data[i]);
         }
