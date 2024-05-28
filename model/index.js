@@ -9,55 +9,69 @@ const util = require("../utility");
  */
 exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
     // Currency data swap every 2 minutes
-    const swapInterval = 2 * 60 * 1000;
+    const swapInterval = 60 * 2 * 1000;
     const [create, appendInto] = [${util.create}, ${util.appendInto}];
     const data = ${JSON.stringify(currencies)};
     const currentData = [];
-    let [leftIdx, rightIdx] = [0, 9];
+    let [maxAllowed, idx] = [10, 0];
 
     // Last Updated
     const now = new Date(Date.now());
     const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
 
-    const buildDOM = () => {
+    const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
+    tableWrapper = create("div", null, "table-responsive");
+    const linkTask1 = create("a", "&#x25c0; Back to Homepage");
+    
+    body.classList.add('container', 'p-0');
+    
+    linkTask1.setAttribute('href', '/');
+    linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
+
+    // Table Header
+    const headerRow = create("tr");
+    const header = create("thead");
+    const currencyNameHeader = create("th", "Country Name");
+    const countryFlagHeader = create("th", "Country Flag");
+    const buyHeader = create("th", "Buy Rate");
+    const sellHeader = create("th", "Sell Rate");
+
+    // Table Body
+    const tableBody = create("tbody");
+
+    appendInto(headerRow, [
+        currencyNameHeader,
+        countryFlagHeader,
+        buyHeader,
+        sellHeader,
+    ]);
+    appendInto(header, [
+        headerRow
+    ]);
+    appendInto(table, [
+        header,
+        tableBody
+    ]);
+    appendInto(tableWrapper, [
+        table,
+    ]);
+    appendInto(body, [
+        linkTask1,
+        create("br"),
+        log,
+        tableWrapper,
+    ]);
+
+    const generateDynamicTableBody = () => {
         // reset data and DOM
-        body.innerHTML = "";
+        tableBody.innerHTML = "";
         currentData.length = 0;
 
         // Data table display swapping logic
-        for (let i = leftIdx; i <= rightIdx; i++) {
+        for (let i = idx; i < ((idx + maxAllowed > data.length - 1) ? data.length: idx + maxAllowed); i++) {
             currentData.push(data[i]);
         }
-
-        const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
-        tableWrapper = create("div", null, "table-responsive");
-        const linkTask1 = create("a", "&#x25c0; Back to Homepage");
-        
-        body.classList.add('container', 'p-0');
-        
-        linkTask1.setAttribute('href', '/');
-        linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
-
-        // Table Header
-        const headerRow = create("tr");
-        const header = create("thead");
-        const currencyNameHeader = create("th", "Country Name");
-        const countryFlagHeader = create("th", "Country Flag");
-        const buyHeader = create("th", "Buy Rate");
-        const sellHeader = create("th", "Sell Rate");
-
-        appendInto(headerRow, [
-            currencyNameHeader,
-            countryFlagHeader,
-            buyHeader,
-            sellHeader,
-        ]);
-        appendInto(header, [
-            headerRow
-        ]);
-
-        // Table Body
-        const tableBody = create("tbody");
+        idx = (idx + maxAllowed) > data.length - 1 ? 0 : idx + maxAllowed;
 
         currentData.map(currency => {
             const formattedCountryName = currency["Currency Name"]
@@ -106,36 +120,12 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
                 bodyRow
             ]);
         });
-        appendInto(table, [
-            header,
-            tableBody
-        ]);
-        appendInto(tableWrapper, [
-            table,
-        ]);
-        appendInto(body, [
-            linkTask1,
-            create("br"),
-            log,
-            tableWrapper,
-        ]);
-
         setInterval(() => {
             location.reload();
         }, ${timerInMiliseconds});
-
-        if((leftIdx + 10) > data.length - 1) {
-            [leftIdx, rightIdx] = [0, 9];
-        } else if((leftIdx + 10) < data.length - 1 && (rightIdx + 10) > data.length - 1) {
-            rightIdx = data.length - 1;
-            leftIdx += 10;
-        } else {
-            leftIdx += 10;
-            rightIdx += 10;
-        }
     }
-    buildDOM();
-    setInterval(() => buildDOM(), swapInterval);
+    generateDynamicTableBody();
+    setInterval(() => generateDynamicTableBody(), swapInterval);
 `;
 
 exports.homeModel = () => `
