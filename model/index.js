@@ -113,180 +113,170 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => {
     }, ${timerInMiliseconds});`;
 };
 
-exports.homeModel = () => {
-  return `
-        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "Tasks", "text-center text-light mb-5");
-        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
-        const linkTask1 = create("a", "UI/UX");
-        const linkTask2 = create("a", "Website Scraping");
+exports.homeModel = () => `
+    const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
+    const title = create("h1", "Tasks", "text-center text-light mb-5");
+    const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+    const linkTask1 = create("a", "UI/UX");
+    const linkTask2 = create("a", "Website Scraping");
 
-        linkTask1.setAttribute('href', '/task1');
-        linkTask2.setAttribute('href', '/task2');
-        setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
+    linkTask1.setAttribute('href', '/task1');
+    linkTask2.setAttribute('href', '/task2');
+    setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
 
-        appendInto(linkWrapper, [
-            linkTask1,
-            create("br"),
-            linkTask2
-        ]);
-        appendInto(body, [
-            title,
-            linkWrapper
-        ]);
-    `;
-};
+    appendInto(linkWrapper, [
+        linkTask1,
+        create("br"),
+        linkTask2
+    ]);
+    appendInto(body, [
+        title,
+        linkWrapper
+    ]);
+`;
 
-exports.screen1Model = () => {
-  return `
-        const [create, appendInto, setAttr, createLabel] = [${util.create}, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}];
-        const title1 = create("span", "Sila pilih perkhidmatan", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
-        const title2 = create("span", "Please select a service", "title text-center d-flex justify-content-center text-light mb-5");
-        const linkWrapper = create("div", null, "text-center");
+exports.screen1Model = () => `
+    const [create, appendInto, setAttr, createLabel] = [${util.create}, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}];
+    const title1 = create("span", "Sila pilih perkhidmatan", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
+    const title2 = create("span", "Please select a service", "title text-center d-flex justify-content-center text-light mb-5");
+    const linkWrapper = create("div", null, "text-center");
 
-        // button labels
-        const label1 = createLabel("Pascabayar", "Postpaid");
-        const label2 = createLabel("Peranti Rumah", "Home Fibre");
-        const label3 = createLabel("Tawaran Korporat", "Corporate Deals");
-        const label4 = createLabel("Perkhidmatan lain-lain", "Other Services");
-        const [linkTask1, linkTask2, linkTask3, linkTask4] = [create("a"), create("a"), create("a"), create("a")];
-        
-        setAttr([linkTask1, linkTask2, linkTask3, linkTask4], {
-            'href': '/task1/screen2',
-            'class': 'mainNav btn btn-custom text-center p-1 mb-3'
-        })
+    // button labels
+    const label1 = createLabel("Pascabayar", "Postpaid");
+    const label2 = createLabel("Peranti Rumah", "Home Fibre");
+    const label3 = createLabel("Tawaran Korporat", "Corporate Deals");
+    const label4 = createLabel("Perkhidmatan lain-lain", "Other Services");
+    const [linkTask1, linkTask2, linkTask3, linkTask4] = [create("a"), create("a"), create("a"), create("a")];
+    
+    setAttr([linkTask1, linkTask2, linkTask3, linkTask4], {
+        'href': '/task1/screen2',
+        'class': 'mainNav btn btn-custom text-center p-1 mb-3'
+    })
 
-        appendInto(linkTask1, [
-            label1,
-        ]);
-        appendInto(linkTask2, [
-            label2,
-        ]);
-        appendInto(linkTask3, [
-            label3,
-        ]);
-        appendInto(linkTask4, [
-            label4,
-        ]);
-        appendInto(linkWrapper, [
-            linkTask1,
-            create("br"),
-            linkTask2,
-            create("br"),
-            linkTask3,
-            create("br"),
-            linkTask4,
-        ]);
-        appendInto(body, [
-            title1,
-            title2,
-            linkWrapper
-        ]);
-    `;
-};
+    appendInto(linkTask1, [
+        label1,
+    ]);
+    appendInto(linkTask2, [
+        label2,
+    ]);
+    appendInto(linkTask3, [
+        label3,
+    ]);
+    appendInto(linkTask4, [
+        label4,
+    ]);
+    appendInto(linkWrapper, [
+        linkTask1,
+        create("br"),
+        linkTask2,
+        create("br"),
+        linkTask3,
+        create("br"),
+        linkTask4,
+    ]);
+    appendInto(body, [
+        title1,
+        title2,
+        linkWrapper
+    ]);
+`;
 
-exports.screen2Model = () => {
-  return `
-        const [create, appendInto, setAttr, createLabel, createSelect] = [${
-          util.create
-        }, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}, ${
-    util.createSelect
-  }];
-        const title1 = create("span", "Sila masukkan nombor telefon anda untuk menerima notis tiket melalui SMS", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
-        const title2 = create("span", "Please enter your mobile number to receive notification via SMS", "title text-center d-flex justify-content-center text-light mb-5");
-        const form = create("form");
-        
-        const selectWrapper = create("div", null, "col-12 position-relative text-center mb-3");
-        const inputWrapper = create("div", null, "col-12 position-relative text-center mb-3");
+exports.screen2Model = () => `
+    const [create, appendInto, setAttr, createLabel, createSelect] = [${
+      util.create
+    }, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}, ${
+  util.createSelect
+}];
+    const title1 = create("span", "Sila masukkan nombor telefon anda untuk menerima notis tiket melalui SMS", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
+    const title2 = create("span", "Please enter your mobile number to receive notification via SMS", "title text-center d-flex justify-content-center text-light mb-5");
+    const form = create("form");
+    
+    const selectWrapper = create("div", null, "col-12 position-relative text-center mb-3");
+    const inputWrapper = create("div", null, "col-12 position-relative text-center mb-3");
 
-        const select = createSelect([
-            'Malaysia',
-            'Singapore',
-            'Thailand',
-            'Indonesia'
-        ]);
-        const input = create("input");
-        const button = create("button", null, 'mainNav btn btn-custom text-center p-1 w-100 mt-4');
+    const select = createSelect([
+        'Malaysia',
+        'Singapore',
+        'Thailand',
+        'Indonesia'
+    ]);
+    const input = create("input");
+    const button = create("button", null, 'mainNav btn btn-custom text-center p-1 w-100 mt-4');
 
-        const selectLabel = createLabel("Kod panggilan negara", "Country code", "text-custom text-center mb-2");
-        const inputLabel = createLabel("Nombor telefon", "Mobile number", "text-custom text-center mb-2");
-        const buttonLabel = createLabel("Dapatkan tiket", "Get a ticket");
+    const selectLabel = createLabel("Kod panggilan negara", "Country code", "text-custom text-center mb-2");
+    const inputLabel = createLabel("Nombor telefon", "Mobile number", "text-custom text-center mb-2");
+    const buttonLabel = createLabel("Dapatkan tiket", "Get a ticket");
 
-        const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip");
-        const inputInvalidTooltip = create("div", "Please input mobile number", "invalid-tooltip");
+    const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip");
+    const inputInvalidTooltip = create("div", "Please input mobile number", "invalid-tooltip");
 
-        setAttr([form], {
-            'class': 'row g-3 needs-validation text-center px-3',
-            'novalidate': true,
-            'action': '/task1/screen6',
-            'method': 'get'
-        })
-        setAttr([input], {
-            'class': 'form-control py-2 mt-2',
-            'type': 'number',
-            'required': true
-        })
-        setAttr([select], {
-            'class': 'form-select py-2 mt-2',
-            'required': true
-        })
-        setAttr([button], {'type': 'submit'});
-        
-        appendInto(button, [buttonLabel]);
-        appendInto(selectWrapper, [
-            selectLabel,
-            select,
-            selectInvalidTooltip,
-        ]);
-        appendInto(inputWrapper, [
-            inputLabel,
-            input,
-            inputInvalidTooltip,
-        ]);
-        appendInto(form, [
-            selectWrapper,
-            inputWrapper,
-            button
-        ]);
-        appendInto(body, [
-            title1,
-            title2,
-            form
-        ]);
-        ${util.bootstrapFormValidation()}
-    `;
-};
+    setAttr([form], {
+        'class': 'row g-3 needs-validation text-center px-3',
+        'novalidate': true,
+        'action': '/task1/screen6',
+        'method': 'get'
+    })
+    setAttr([input], {
+        'class': 'form-control py-2 mt-2',
+        'type': 'number',
+        'required': true
+    })
+    setAttr([select], {
+        'class': 'form-select py-2 mt-2',
+        'required': true
+    })
+    setAttr([button], {'type': 'submit'});
+    
+    appendInto(button, [buttonLabel]);
+    appendInto(selectWrapper, [
+        selectLabel,
+        select,
+        selectInvalidTooltip,
+    ]);
+    appendInto(inputWrapper, [
+        inputLabel,
+        input,
+        inputInvalidTooltip,
+    ]);
+    appendInto(form, [
+        selectWrapper,
+        inputWrapper,
+        button
+    ]);
+    appendInto(body, [
+        title1,
+        title2,
+        form
+    ]);
+    ${util.bootstrapFormValidation()}
+`;
 
-exports.screen6Model = () => {
-  return `
-        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title1 = create("span", "Terima Kasih", "title text-custom bold text-center d-flex justify-content-center mb-3");
-        const title2 = create("span", "Thank You", "title text-custom text-center d-flex justify-content-center mb-3");
-        appendInto(body, [
-            title1,
-            title2
-        ]);
-    `;
-};
+exports.screen6Model = () => `
+    const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
+    const title1 = create("span", "Terima Kasih", "title text-custom bold text-center d-flex justify-content-center mb-3");
+    const title2 = create("span", "Thank You", "title text-custom text-center d-flex justify-content-center mb-3");
+    appendInto(body, [
+        title1,
+        title2
+    ]);
+`;
 
-exports.notFoundModel = () => {
-  return `
-        const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-        const title = create("h1", "404: Not Found", "title text-center text-light mb-5");
-        const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
-        const linkTask1 = create("a", "&#x25c0; Back to Homepage");
+exports.notFoundModel = () => `
+    const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
+    const title = create("h1", "404: Not Found", "title text-center text-light mb-5");
+    const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+    const linkTask1 = create("a", "&#x25c0; Back to Homepage");
 
-        setAttr([linkTask1], {
-            'href': '/',
-            'class': 'mainNav btn btn-custom mb-3 p-1'
-        });
+    setAttr([linkTask1], {
+        'href': '/',
+        'class': 'mainNav btn btn-custom mb-3 p-1'
+    });
 
-        appendInto(linkWrapper, [
-            linkTask1,
-        ]);
-        appendInto(body, [
-            title,
-            linkWrapper
-        ]);
-    `;
-};
+    appendInto(linkWrapper, [
+        linkTask1,
+    ]);
+    appendInto(body, [
+        title,
+        linkWrapper
+    ]);
+`;

@@ -1,5 +1,12 @@
 const style = require("./styles").styles;
-exports.template = (body, title = "") => `
+/**
+ * Returns a customizable HTML5 template
+ *
+ * @param {Object} body - Template literal string of JS scripts
+ * @param {number} title - Title of this page
+ * @returns {string} Template literal string of JavaScript code for injecting Client-side scripts
+ */
+exports.template = (body = "", title = "") => `
     <!DOCTYPE html>
     <html lang="en">
     <head>

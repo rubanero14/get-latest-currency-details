@@ -84,13 +84,12 @@ exports.appendInto = (main, children = []) => {
  * @param {HTMLElement[]} els - A list of HTML elements
  * @param {Object} attrs - An object of attributes
  */
-exports.setAttr = (els = [], attrs = {}) => {
+exports.setAttr = (els = [], attrs = {}) =>
   els.forEach((el) => {
     for (const attr in attrs) {
       el.setAttribute(attr, attrs[attr]);
     }
   });
-};
 
 /**
  * Returns a span HTML element with labels in English and Malay language
@@ -100,17 +99,16 @@ exports.setAttr = (els = [], attrs = {}) => {
  * @param {string} classes - A string of class names for the label
  * @returns {HTMLElement} The created span HTML element
  */
-exports.createLabel = (malay, english, classes = "title mb-2") => {
-  return create(
+exports.createLabel = (malay, english, classes = "title mb-2") =>
+  create(
     "span",
     `
-    <b class="text-center">${malay}</b>
-    <br />
-    <span class="text-center">${english}</span>
-  `,
+  <b class="text-center">${malay}</b>
+  <br />
+  <span class="text-center">${english}</span>
+`,
     classes
   );
-};
 
 /**
  * Returns a select HTML element with list of options generated from values passed
@@ -135,8 +133,8 @@ exports.createSelect = (values = [], placeholder = "") => {
  *
  * @returns {string} The string of scripts for Bootstrap Forms validation
  */
-exports.bootstrapFormValidation = () => {
-  return `(() => {
+exports.bootstrapFormValidation = () => `
+(() => {
     "use strict";
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll(".needs-validation");
@@ -156,8 +154,7 @@ exports.bootstrapFormValidation = () => {
         false
       );
     });
-  })()`;
-};
+})()`;
 
 /**
  * Returns a string of scripts to generate Client-side browser refresh and timer function
@@ -165,15 +162,13 @@ exports.bootstrapFormValidation = () => {
  * @param {number} timerInMiliseconds - Timer in miliseconds for browser refresh
  * @returns {string} The string of scripts to generate Client-side browser refresh and timer function
  */
-exports.timeToRefresh = (timerInMiliseconds) => {
-  return `
-    let countDown = (${timerInMiliseconds} + now.getTime());
-    let zeroHour = (countDown - new Date(Date.now())) / 1000;
-    const timeToRefresh = () => "Time to refresh: " + (zeroHour > 0 ? zeroHour.toFixed(0) : 0) + (zeroHour > 1 ? " seconds left" : " second left");
-    const timer = create("span", timeToRefresh(), "text-light log d-flex justify-content-end mb-2");
-    setInterval(() => {
-        zeroHour = (countDown - new Date(Date.now())) / 1000;
-        timer.textContent = timeToRefresh();
-    }, 1000);
-  `;
-};
+exports.timeToRefresh = (timerInMiliseconds) => `
+  let countDown = (${timerInMiliseconds} + now.getTime());
+  let zeroHour = (countDown - new Date(Date.now())) / 1000;
+  const timeToRefresh = () => "Time to refresh: " + (zeroHour > 0 ? zeroHour.toFixed(0) : 0) + (zeroHour > 1 ? " seconds left" : " second left");
+  const timer = create("span", timeToRefresh(), "text-light log d-flex justify-content-end mb-2");
+  setInterval(() => {
+      zeroHour = (countDown - new Date(Date.now())) / 1000;
+      timer.textContent = timeToRefresh();
+  }, 1000);
+`;
