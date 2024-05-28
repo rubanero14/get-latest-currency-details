@@ -3,7 +3,7 @@
  *
  * @returns {string} Template literal string of CSS code for injecting Client-side stylesheet
  */
-exports.styles = `
+exports.styles = () => `
   html {
     height: 100%;
   }

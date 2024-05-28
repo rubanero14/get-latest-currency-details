@@ -1,4 +1,4 @@
-const style = require("./styles").styles;
+const style = require("./styles").styles();
 
 /**
  * Returns a customizable HTML5 template
