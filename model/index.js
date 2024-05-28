@@ -215,7 +215,7 @@ exports.screen2Model = () => {
             'required': true
         })
         setAttr([select], {
-            'class': 'form-select mt-2x',
+            'class': 'form-select mt-2',
             'required': true
         })
         setAttr([button], {'type': 'submit'});
