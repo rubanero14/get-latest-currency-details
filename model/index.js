@@ -9,10 +9,10 @@ const util = require("../utility");
  */
 exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
     // Currency data swap every 2 minutes
-    const swapInterval = 60 * 2 * 1000;
+    const swapInterval = 2 * 60 * 1000;
     const [create, appendInto] = [${util.create}, ${util.appendInto}];
     const data = ${JSON.stringify(currencies)};
-    const currentData = [];
+    let currentData = [];
     let [maxAllowed, idx] = [10, 0];
 
     // Last Updated
@@ -68,9 +68,7 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
         currentData.length = 0;
 
         // Data table display swapping logic
-        for (let i = idx; i < ((idx + maxAllowed > data.length - 1) ? data.length: idx + maxAllowed); i++) {
-            currentData.push(data[i]);
-        }
+        currentData = data.slice(idx, (idx + maxAllowed) > data.length - 1 ? data.length : idx + maxAllowed);
         idx = (idx + maxAllowed) > data.length - 1 ? 0 : idx + maxAllowed;
 
         currentData.map(currency => {
