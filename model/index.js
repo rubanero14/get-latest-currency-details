@@ -116,6 +116,7 @@ exports.homeModel = () => {
 
         appendInto(linkWrapper, [
             linkTask1,
+            create("br"),
             linkTask2
         ]);
         appendInto(body, [
