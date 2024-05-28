@@ -12,7 +12,6 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
     const swapInterval = 2 * 60 * 1000;
     const [create, appendInto] = [${util.create}, ${util.appendInto}];
     const data = ${JSON.stringify(currencies)};
-    let currentData = [];
     let [maxAllowed, idx] = [10, 0];
 
     // Last Updated
@@ -65,13 +64,9 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
     const generateDynamicTableBody = () => {
         // reset data and DOM
         tableBody.innerHTML = "";
-        currentData.length = 0;
 
         // Data table display swapping logic
-        currentData = data.slice(idx, (idx + maxAllowed) > data.length - 1 ? data.length : idx + maxAllowed);
-        idx = (idx + maxAllowed) > data.length - 1 ? 0 : idx + maxAllowed;
-
-        currentData.map(currency => {
+        data.slice(idx, (idx + maxAllowed) > data.length - 1 ? data.length : idx + maxAllowed).map(currency => {
             const formattedCountryName = currency["Currency Name"]
                 .replace("Chinese","China")
                 .replace("Australian","Australia")
@@ -118,6 +113,7 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
                 bodyRow
             ]);
         });
+        idx = (idx + maxAllowed) > data.length - 1 ? 0 : idx + maxAllowed;
         setInterval(() => {
             location.reload();
         }, ${timerInMiliseconds});
