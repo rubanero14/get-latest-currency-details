@@ -195,11 +195,12 @@ exports.screen2Model = () => `
     const inputWrapper = create("div", null, "col-12 position-relative text-center mb-3");
 
     const select = createSelect([
+        null,
         'Malaysia',
         'Singapore',
         'Thailand',
         'Indonesia'
-    ]);
+    ], "Please select valid country code..");
     const input = create("input");
     const button = create("button", null, 'mainNav btn btn-custom text-center p-1 w-100 mt-4');
 
