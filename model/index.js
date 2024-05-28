@@ -69,10 +69,19 @@ exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
                 .replace("Pound Sterling","Britain")
                 .replace("UAE","United Arab Emirates")
                 .replace("The Euro","European Union")
+                .replace("Danish Kroner","Denmark")
+                .replace("Swedish Kroner","Sweden")
+                .replace("Indonesian Rupiah","Indonesia")
+                .replace("Indian","India")
+                .replace("Thai Baht","Thailand")
+                .replace("South African Rand","South Africa")
+                .replace(" Riyal","")
                 .replace(" Dirham","")
                 .replace(" Franc","")
                 .replace(" Dollar","")
-                .replace(" Renminbi","");
+                .replace(" Renminbi","")
+                .replace(" Rupee","")
+                .replace(" Peso","s");
                 
             const bodyRow = create("tr");
             const countryNameBody = create("td", formattedCountryName);
