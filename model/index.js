@@ -186,8 +186,8 @@ exports.screen2Model = () => {
         const title2 = create("span", "Please enter your mobile number to receive notification via SMS", "title text-center d-flex justify-content-center text-light mb-5");
         const form = create("form");
         
-        const selectWrapper = create("div", null, "col-12 position-relative text-center");
-        const inputWrapper = create("div", null, "col-12 position-relative text-center");
+        const selectWrapper = create("div", null, "col-12 position-relative text-center mb-3");
+        const inputWrapper = create("div", null, "col-12 position-relative text-center mb-3");
 
         const select = createSelect([
             'Malaysia',
@@ -202,7 +202,7 @@ exports.screen2Model = () => {
         const inputLabel = createLabel("Nombor telefon", "Mobile number", "text-custom text-center mb-2");
         const buttonLabel = createLabel("Dapatkan tiket", "Get a ticket");
 
-        const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip mb-4");
+        const selectInvalidTooltip = create("div", "Please select country code", "invalid-tooltip");
         const inputInvalidTooltip = create("div", "Please input mobile number", "invalid-tooltip");
 
         setAttr([form], {
