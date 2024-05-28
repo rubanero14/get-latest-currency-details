@@ -24,7 +24,7 @@ exports.currencyModel = (currencies) => {
     linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
     
     // Last Updated
-    const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-light log d-flex justify-content-end mb-3");
+    const log = create("span", "Last Update: " + new Date(Date.now()).toUTCString(),"text-light log d-flex justify-content-end");
 
     // Table Header
     const headerRow = create("tr");
@@ -213,12 +213,12 @@ exports.screen2Model = () => {
             'method': 'get'
         })
         setAttr([input], {
-            'class': 'form-control mt-2',
+            'class': 'form-control py-2 mt-2',
             'type': 'number',
             'required': true
         })
         setAttr([select], {
-            'class': 'form-select mt-2',
+            'class': 'form-select py-2 mt-2',
             'required': true
         })
         setAttr([button], {'type': 'submit'});
