@@ -204,7 +204,7 @@ exports.screen2Model = () => {
         const inputInvalidTooltip = create("div", "Please input mobile number", "invalid-tooltip");
 
         setAttr([form], {
-            'class': 'row g-3 needs-validation text-center',
+            'class': 'row g-3 needs-validation text-center px-3',
             'novalidate': true,
             'action': '/task1/screen6',
             'method': 'get'
