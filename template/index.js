@@ -13,10 +13,10 @@ exports.template = (body, title = "") => `
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </head>
     <body class="body d-flex align-items-center justify-content-center px-3 py-5">
-    <main class="container pt-5"></main>
+    <main class="pt-5"></main>
     </body>
     <script>
-        const body = document.querySelector('.container');
+        const body = document.querySelector('main');
         ${body}
     </script>
     </html>

@@ -173,11 +173,15 @@ exports.screen1Model = () => {
 
 exports.screen2Model = () => {
   return `
-        const [create, appendInto, setAttr, createLabel, createSelect] = [${util.create}, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}, ${util.createSelect}];
+        const [create, appendInto, setAttr, createLabel, createSelect] = [${
+          util.create
+        }, ${util.appendInto}, ${util.setAttr}, ${util.createLabel}, ${
+    util.createSelect
+  }];
         const title1 = create("span", "Sila masukkan nombor telefon anda untuk menerima notis tiket melalui SMS", "title fw-bold text-center d-flex justify-content-center text-light mb-2");
         const title2 = create("span", "Please enter your mobile number to receive notification via SMS", "title text-center d-flex justify-content-center text-light mb-5");
         const form = create("form");
-
+        
         const selectWrapper = create("div", null, "col-12 position-relative text-center");
         const inputWrapper = create("div", null, "col-12 position-relative text-center");
 
@@ -235,25 +239,7 @@ exports.screen2Model = () => {
             title2,
             form
         ]);
-
-        // Bootstrap form validation
-        (() => {
-            'use strict'
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-                }, false)
-            })
-        })()
+        ${util.bootstrapFormValidation()}
     `;
 };
 
