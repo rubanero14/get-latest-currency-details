@@ -1,3 +1,8 @@
+/**
+ * Returns a template literal of CSS stylesheet
+ *
+ * @returns {string} Template literal string of CSS code for injecting Client-side stylesheet
+ */
 exports.styles = `
   html {
     height: 100%;
@@ -59,7 +64,7 @@ exports.styles = `
   th, td {
     text-wrap: nowrap;
   }
-  
+
   th:not(:first-child),
   td:not(:first-child) {
     text-align: center;
