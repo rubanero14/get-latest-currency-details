@@ -1,6 +1,6 @@
 const util = require("../utility");
 
-exports.currencyModel = (currencies) => {
+exports.currencyModel = (currencies, timerInMiliseconds = 10000) => {
   const allCurrencies = [...currencies[0]];
   const allowedCcyCount = 10 - allCurrencies.length;
 
@@ -24,7 +24,15 @@ exports.currencyModel = (currencies) => {
     linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
     
     // Last Updated
-    const log = create("span", "Last Update: " + new Date(Date.now()).toString(),"text-light log d-flex justify-content-end mb-2");
+    const now = new Date(Date.now());
+    const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
+    let countDown = (${timerInMiliseconds} + now.getTime());
+    let zeroHour = (countDown - new Date(Date.now())) / 1000;
+    const timer = create("span", "Time to refresh: " + ((countDown - new Date(Date.now()).getTime()) / 1000).toFixed(0) + (zeroHour > 1 ? " seconds left" : "second left"),"text-light log d-flex justify-content-end mb-2");
+    setInterval(() => {
+        zeroHour = (countDown - new Date(Date.now())) / 1000;
+        timer.textContent = "Time to refresh: " + (zeroHour > 0 ? ((countDown - new Date(Date.now()).getTime()) / 1000).toFixed(0) : "0 ") + (zeroHour > 1 ? " seconds " : " second ") + "left";
+    }, 1000);
 
     // Table Header
     const headerRow = create("tr");
@@ -95,12 +103,13 @@ exports.currencyModel = (currencies) => {
         linkTask1,
         create("br"),
         log,
+        timer,
         tableWrapper,
     ]);
 
     setInterval(() => {
         location.reload();
-    }, 60000 * 60);`;
+    }, ${timerInMiliseconds});`;
 };
 
 exports.homeModel = () => {
