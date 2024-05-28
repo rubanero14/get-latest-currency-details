@@ -194,7 +194,7 @@ exports.screen2Model = () => {
             'Indonesia'
         ]);
         const input = create("input");
-        const button = create("button", null, 'mainNav btn btn-custom text-center p-1 mt-4');
+        const button = create("button", null, 'mainNav btn btn-custom text-center p-1 w-100 mt-4');
 
         const selectLabel = createLabel("Kod panggilan negara", "Country code", "text-custom text-center mb-2");
         const inputLabel = createLabel("Nombor telefon", "Mobile number", "text-custom text-center mb-2");
