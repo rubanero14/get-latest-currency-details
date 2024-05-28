@@ -25,7 +25,7 @@ app.get("/task1", async (req, res, next) => {
 app.get("/task2", async (req, res, next) => {
   res.send(
     template(
-      layout.currencyModel(await util.currencyValueExtractor(), 60000 * 60),
+      layout.currencyModel(await util.currencyValueExtractor(), 10000),
       "Get Latest Currency Values"
     )
   );

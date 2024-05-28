@@ -26,13 +26,7 @@ exports.currencyModel = (currencies, timerInMiliseconds = 10000) => {
     // Last Updated
     const now = new Date(Date.now());
     const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
-    let countDown = (${timerInMiliseconds} + now.getTime());
-    let zeroHour = (countDown - new Date(Date.now())) / 1000;
-    const timer = create("span", "Time to refresh: " + ((countDown - new Date(Date.now()).getTime()) / 1000).toFixed(0) + (zeroHour > 1 ? " seconds left" : "second left"),"text-light log d-flex justify-content-end mb-2");
-    setInterval(() => {
-        zeroHour = (countDown - new Date(Date.now())) / 1000;
-        timer.textContent = "Time to refresh: " + (zeroHour > 0 ? ((countDown - new Date(Date.now()).getTime()) / 1000).toFixed(0) : "0 ") + (zeroHour > 1 ? " seconds " : " second ") + "left";
-    }, 1000);
+    ${util.timeToRefresh(timerInMiliseconds)}
 
     // Table Header
     const headerRow = create("tr");

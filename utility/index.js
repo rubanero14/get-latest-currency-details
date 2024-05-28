@@ -114,3 +114,16 @@ exports.bootstrapFormValidation = () => {
     });
   })()`;
 };
+
+exports.timeToRefresh = (timerInMiliseconds) => {
+  return `
+    let countDown = (${timerInMiliseconds} + now.getTime());
+    let zeroHour = (countDown - new Date(Date.now())) / 1000;
+    const timeToRefresh = () => "Time to refresh: " + (zeroHour > 0 ? zeroHour.toFixed(0) : 0) + (zeroHour > 1 ? " seconds left" : " second left");
+    const timer = create("span", timeToRefresh(), "text-light log d-flex justify-content-end mb-2");
+    setInterval(() => {
+        zeroHour = (countDown - new Date(Date.now())) / 1000;
+        timer.textContent = timeToRefresh();
+    }, 1000);
+  `;
+};
