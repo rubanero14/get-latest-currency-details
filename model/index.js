@@ -17,7 +17,9 @@ exports.currencyModel = (currencies) => {
     const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
     const tableWrapper = create("div", null, "table-responsive");
     const linkTask1 = create("a", "&#x25c0; Back to Homepage");
-
+    
+    body.classList.add('container');
+    
     linkTask1.setAttribute('href', '/');
     linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
     
