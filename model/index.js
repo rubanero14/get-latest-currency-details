@@ -6,7 +6,7 @@ const util = require("../utility");
  * @param {number} timerInMiliseconds - timer in miliseconds for auto refresh intervals
  * @returns {string} JavaScript code injection into DOM
  */
-exports.currencyModel = async (timerInMiliseconds = 10000) => {
+exports.currencyModel = async (timerInMiliseconds = 60 * 60 * 2) => {
   let currencies = [];
 
   await util
