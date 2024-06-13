@@ -15,8 +15,8 @@ exports.currencyModel = async (timerInMiliseconds = 10000) => {
     .catch(() => (currencies = util.mockData));
 
   return `
-    // Currency data swap every 2 minutes
-        const swapInterval = 2000;
+    // Currency data swap every 30 seconds
+        const swapInterval = 30000;
         const [create, appendInto] = [${util.create}, ${util.appendInto}];
         const data = ${JSON.stringify(currencies)};
         let [maxAllowed, idx] = [10, 0];
@@ -228,8 +228,12 @@ exports.screen2Model = () => `
     const selectInvalidTooltip = create("div", "Please select a valid country code", "invalid-tooltip");
     const inputInvalidTooltip = create("div", "Please input valid mobile number, eg: 011-23456789", "invalid-tooltip");
 
+    setAttr([body], {
+        'class': 'row g-3 needs-validation text-center px-5',
+    })
+
     setAttr([form], {
-        'class': 'row g-3 needs-validation text-center px-3',
+        'class': 'row g-3 needs-validation text-center',
         'novalidate': true,
         'action': '/task1/screen6',
         'method': 'get'

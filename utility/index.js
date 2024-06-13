@@ -9,7 +9,7 @@ exports.currencyValueExtractor = async () => {
 
   const page = await browser.newPage();
   await page.goto(
-    "https://www.hsbc.com.my/investments/products/foreign-exchange/currency-rates/"
+    "https://www.hsbc.com.my/investments/products/foreign-exchange/currency-rate/"
   );
 
   // Wait for 1 second to ensure page content loads properly
