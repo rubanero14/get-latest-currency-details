@@ -20,7 +20,7 @@ exports.currencyModel = async (timerInMiliseconds = 10000) => {
         const [create, appendInto] = [${util.create}, ${util.appendInto}];
         const data = ${JSON.stringify(currencies)};
         let [maxAllowed, idx] = [10, 0];
-
+        document.querySelector('body').classList.add('px-5');
         // Last Updated
         const now = new Date(Date.now());
         const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");

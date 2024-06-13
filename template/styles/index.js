@@ -88,6 +88,10 @@ exports.styles = () => `
   @media screen and (min-width: 480px) {
     .table-responsive {
       font-size: 16px;
+
+      td:first-child {
+        width: 500px;
+      }
     }
     
     .flag {
