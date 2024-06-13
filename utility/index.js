@@ -9,7 +9,7 @@ exports.currencyValueExtractor = async () => {
 
   const page = await browser.newPage();
   await page.goto(
-    "https://www.hsbc.com.my/investments/products/foreign-exchange/currency-rate/"
+    "https://www.hsbc.com.my/investments/products/foreign-exchange/currency-rates/"
   );
 
   // Wait for 1 second to ensure page content loads properly
@@ -155,3 +155,172 @@ exports.bootstrapFormValidation = () => `
       );
     });
 })()`;
+
+/**
+ * Returns a Object of mock currency data for web sracping page
+ *
+ * @returns {Object} The Object of mock currency data
+ */
+exports.mockData = [
+  {
+    Currency: "USD",
+    "Currency Name": "US Dollar",
+    "TT Sell": "4.7912",
+    "TT Buy": "4.6218",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/US.png",
+  },
+  {
+    Currency: "SGD",
+    "Currency Name": "Singapore Dollar",
+    "TT Sell": "3.5631",
+    "TT Buy": "3.4186",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/SG.png",
+  },
+  {
+    Currency: "NZD",
+    "Currency Name": "New Zealand Dollar",
+    "TT Sell": "2.9894",
+    "TT Buy": "2.8311",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/NZ.png",
+  },
+  {
+    Currency: "GBP",
+    "Currency Name": "Pound Sterling",
+    "TT Sell": "6.1340",
+    "TT Buy": "5.9100",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/GB.png",
+  },
+  {
+    Currency: "EUR",
+    "Currency Name": "The Euro",
+    "TT Sell": "5.1925",
+    "TT Buy": "4.9859",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/EU.png",
+  },
+  {
+    Currency: "CAD",
+    "Currency Name": "Canadian Dollar",
+    "TT Sell": "3.5021",
+    "TT Buy": "3.3553",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/CA.png",
+  },
+  {
+    Currency: "BND",
+    "Currency Name": "Brunei Dollar",
+    "TT Sell": "3.5664",
+    "TT Buy": "3.4156",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/BN.png",
+  },
+  {
+    Currency: "AUD",
+    "Currency Name": "Australian Dollar",
+    "TT Sell": "3.2167",
+    "TT Buy": "3.0542",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/AU.png",
+  },
+  {
+    Currency: "AED",
+    "Currency Name": "UAE Dirham",
+    "TT Sell": "133.2600",
+    "TT Buy": "123.0100",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/AE.png",
+  },
+  {
+    Currency: "CHF",
+    "Currency Name": "Swiss Franc",
+    "TT Sell": "535.9000",
+    "TT Buy": "517.1600",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/CH.png",
+  },
+  {
+    Currency: "CNY",
+    "Currency Name": "Chinese Renminbi",
+    "TT Sell": "66.0900",
+    "TT Buy": "63.5000",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/CN.png",
+  },
+  {
+    Currency: "DKK",
+    "Currency Name": "Danish Kroner",
+    "TT Sell": "70.9500",
+    "TT Buy": "65.4900",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/DK.png",
+  },
+  {
+    Currency: "HKD",
+    "Currency Name": "Hong Kong Dollar",
+    "TT Sell": "61.9600",
+    "TT Buy": "58.6000",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/HK.png",
+  },
+  {
+    Currency: "IDR",
+    "Currency Name": "Indonesian Rupiah",
+    "TT Sell": "0.0300",
+    "TT Buy": "0.0000",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/ID.png",
+  },
+  {
+    Currency: "PHP",
+    "Currency Name": "Philippine Peso",
+    "TT Sell": "8.3400",
+    "TT Buy": "0.0000",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/PH.png",
+  },
+  {
+    Currency: "INR",
+    "Currency Name": "Indian Rupee",
+    "TT Sell": "5.8640",
+    "TT Buy": "0.0000",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/IN.png",
+  },
+  {
+    Currency: "JPY",
+    "Currency Name": "Japanese Yen",
+    "TT Sell": "3.0730",
+    "TT Buy": "2.9300",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/JP.png",
+  },
+  {
+    Currency: "LKR",
+    "Currency Name": "Sri Lanka Rupee",
+    "TT Sell": "1.6090",
+    "TT Buy": "0.0000",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/LK.png",
+  },
+  {
+    Currency: "NOK",
+    "Currency Name": "Norwegian Kroner",
+    "TT Sell": "46.2800",
+    "TT Buy": "42.7200",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/NO.png",
+  },
+  {
+    Currency: "SAR",
+    "Currency Name": "Saudi Arabia Riyal",
+    "TT Sell": "129.6800",
+    "TT Buy": "121.2300",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/SA.png",
+  },
+  {
+    Currency: "SEK",
+    "Currency Name": "Swedish Kroner",
+    "TT Sell": "47.1300",
+    "TT Buy": "43.5100",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/SE.png",
+  },
+  {
+    Currency: "THB",
+    "Currency Name": "Thai Baht",
+    "TT Sell": "13.3910",
+    "TT Buy": "12.3610",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/TH.png",
+  },
+  {
+    Currency: "ZAR",
+    "Currency Name": "South African Rand",
+    "TT Sell": "26.6200",
+    "TT Buy": "24.5800",
+    flag: "https://flaglog.com/codes/standardized-rectangle-120px/ZA.png",
+  },
+];

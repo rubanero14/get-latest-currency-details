@@ -3,124 +3,132 @@ const util = require("../utility");
 /**
  * Returns a string of scripts to be injected into DOM for web scraping page
  *
- * @param {Object} currencies - Object containing scraped currency data
  * @param {number} timerInMiliseconds - timer in miliseconds for auto refresh intervals
  * @returns {string} JavaScript code injection into DOM
  */
-exports.currencyModel = (currencies = {}, timerInMiliseconds = 10000) => `
+exports.currencyModel = async (timerInMiliseconds = 10000) => {
+  let currencies = [];
+
+  await util
+    .currencyValueExtractor()
+    .then((data) => (currencies = data))
+    .catch(() => (currencies = util.mockData));
+
+  return `
     // Currency data swap every 2 minutes
-    const swapInterval = 2 * 60 * 1000;
-    const [create, appendInto] = [${util.create}, ${util.appendInto}];
-    const data = ${JSON.stringify(currencies)};
-    let [maxAllowed, idx] = [10, 0];
+        const swapInterval = 2000;
+        const [create, appendInto] = [${util.create}, ${util.appendInto}];
+        const data = ${JSON.stringify(currencies)};
+        let [maxAllowed, idx] = [10, 0];
 
-    // Last Updated
-    const now = new Date(Date.now());
-    const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
+        // Last Updated
+        const now = new Date(Date.now());
+        const log = create("span", "Last Update: " + now.toString(),"text-light log d-flex justify-content-end mb-2");
 
-    const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
-    tableWrapper = create("div", null, "table-responsive");
-    const linkTask1 = create("a", "&#x25c0; Back to Homepage");
-    
-    body.classList.add('container', 'p-0');
-    
-    linkTask1.setAttribute('href', '/');
-    linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
+        const table = create("table", null, "table table-warning table-hover table-bordered mb-0");
+        tableWrapper = create("div", null, "table-responsive");
+        const linkTask1 = create("a", "&#x25c0; Back to Homepage");
 
-    // Table Header
-    const headerRow = create("tr");
-    const header = create("thead");
-    const currencyNameHeader = create("th", "Country Name");
-    const countryFlagHeader = create("th", "Country Flag");
-    const buyHeader = create("th", "Buy Rate");
-    const sellHeader = create("th", "Sell Rate");
+        body.classList.add('container', 'p-0');
 
-    // Table Body
-    const tableBody = create("tbody");
+        linkTask1.setAttribute('href', '/');
+        linkTask1.setAttribute('class', 'mainNav btn btn-custom text-center p-1 mb-3');
 
-    appendInto(headerRow, [
-        currencyNameHeader,
-        countryFlagHeader,
-        buyHeader,
-        sellHeader,
-    ]);
-    appendInto(header, [
-        headerRow
-    ]);
-    appendInto(table, [
-        header,
-        tableBody
-    ]);
-    appendInto(tableWrapper, [
-        table,
-    ]);
-    appendInto(body, [
-        linkTask1,
-        create("br"),
-        log,
-        tableWrapper,
-    ]);
+        // Table Header
+        const headerRow = create("tr");
+        const header = create("thead");
+        const currencyNameHeader = create("th", "Country Name");
+        const countryFlagHeader = create("th", "Country Flag");
+        const buyHeader = create("th", "Buy Rate");
+        const sellHeader = create("th", "Sell Rate");
 
-    const generateDynamicTableBody = () => {
-        // reset data and DOM
-        tableBody.innerHTML = "";
+        // Table Body
+        const tableBody = create("tbody");
 
-        // Data table display swapping logic
-        data.slice(idx, (idx + maxAllowed) > data.length - 1 ? data.length : idx + maxAllowed).map(currency => {
-            const formattedCountryName = currency["Currency Name"]
-                .replace("Chinese","China")
-                .replace("Australian","Australia")
-                .replace("Canadian","Canada")
-                .replace("Swiss","Switzerland")
-                .replace("US","United States")
-                .replace("Pound Sterling","Britain")
-                .replace("UAE","United Arab Emirates")
-                .replace("The Euro","European Union")
-                .replace("Danish Kroner","Denmark")
-                .replace("Swedish Kroner","Sweden")
-                .replace("Norwegian Kroner","Norway")
-                .replace("Indonesian Rupiah","Indonesia")
-                .replace("Indian","India")
-                .replace("Thai Baht","Thailand")
-                .replace("South African Rand","South Africa")
-                .replace("ese Yen","")
-                .replace(" Riyal","")
-                .replace(" Dirham","")
-                .replace(" Franc","")
-                .replace(" Dollar","")
-                .replace(" Renminbi","")
-                .replace(" Rupee","")
-                .replace(" Peso","s");
-                
-            const bodyRow = create("tr");
-            const countryNameBody = create("td", formattedCountryName);
-            const countryFlagBody = create("td");
-            const countryFlag = create("img", null, "flag");
-            countryFlag.setAttribute('src', currency.flag);
-            const buyBody = create("td", currency["TT Buy"]);
-            const sellBody = create("td", currency["TT Sell"]);
+        appendInto(headerRow, [
+            currencyNameHeader,
+            countryFlagHeader,
+            buyHeader,
+            sellHeader,
+        ]);
+        appendInto(header, [
+            headerRow
+        ]);
+        appendInto(table, [
+            header,
+            tableBody
+        ]);
+        appendInto(tableWrapper, [
+            table,
+        ]);
+        appendInto(body, [
+            linkTask1,
+            create("br"),
+            log,
+            tableWrapper,
+        ]);
 
-            appendInto(countryFlagBody, [
-                countryFlag
-            ]);
-            appendInto(bodyRow, [
-                countryNameBody,
-                countryFlagBody,
-                buyBody,
-                sellBody,
-            ]);
-            appendInto(tableBody, [
-                bodyRow
-            ]);
-        });
-        idx = (idx + maxAllowed) > data.length - 1 ? 0 : idx + maxAllowed;
-        setInterval(() => {
-            location.reload();
-        }, ${timerInMiliseconds});
-    }
-    generateDynamicTableBody();
-    setInterval(() => generateDynamicTableBody(), swapInterval);
-`;
+        const generateDynamicTableBody = () => {
+            // reset data and DOM
+            tableBody.innerHTML = "";
+
+            // Data table display swapping logic
+            data.slice(idx, (idx + maxAllowed) > data.length - 1 ? data.length : idx + maxAllowed).map(currency => {
+                const formattedCountryName = currency["Currency Name"]
+                    .replace("Chinese","China")
+                    .replace("Australian","Australia")
+                    .replace("Canadian","Canada")
+                    .replace("Swiss","Switzerland")
+                    .replace("US","United States")
+                    .replace("Pound Sterling","Britain")
+                    .replace("UAE","United Arab Emirates")
+                    .replace("The Euro","European Union")
+                    .replace("Danish Kroner","Denmark")
+                    .replace("Swedish Kroner","Sweden")
+                    .replace("Norwegian Kroner","Norway")
+                    .replace("Indonesian Rupiah","Indonesia")
+                    .replace("Indian","India")
+                    .replace("Thai Baht","Thailand")
+                    .replace("South African Rand","South Africa")
+                    .replace("ese Yen","")
+                    .replace(" Riyal","")
+                    .replace(" Dirham","")
+                    .replace(" Franc","")
+                    .replace(" Dollar","")
+                    .replace(" Renminbi","")
+                    .replace(" Rupee","")
+                    .replace(" Peso","s");
+
+                const bodyRow = create("tr");
+                const countryNameBody = create("td", formattedCountryName);
+                const countryFlagBody = create("td");
+                const countryFlag = create("img", null, "flag");
+                countryFlag.setAttribute('src', currency.flag);
+                const buyBody = create("td", currency["TT Buy"]);
+                const sellBody = create("td", currency["TT Sell"]);
+
+                appendInto(countryFlagBody, [
+                    countryFlag
+                ]);
+                appendInto(bodyRow, [
+                    countryNameBody,
+                    countryFlagBody,
+                    buyBody,
+                    sellBody,
+                ]);
+                appendInto(tableBody, [
+                    bodyRow
+                ]);
+            });
+            idx = (idx + maxAllowed) > data.length - 1 ? 0 : idx + maxAllowed;
+            setInterval(() => {
+                location.reload();
+            }, ${timerInMiliseconds});
+        }
+        generateDynamicTableBody();
+        setInterval(() => generateDynamicTableBody(), swapInterval);
+    `;
+};
 
 exports.homeModel = () => `
     const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];

@@ -1,6 +1,5 @@
 const PORT = process.env.PORT || 8000;
 const express = require("express");
-const util = require("./utility");
 const template = require("./template").template;
 const layout = require("./model");
 
@@ -24,10 +23,7 @@ app.get("/task1", async (req, res, next) => {
 
 app.get("/task2", async (req, res, next) => {
   res.send(
-    template(
-      layout.currencyModel(await util.currencyValueExtractor(), 60 * 60 * 1000),
-      "Get Latest Currency Values"
-    )
+    template(await layout.currencyModel(), "Get Latest Currency Values")
   );
 });
 
