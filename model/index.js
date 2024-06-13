@@ -136,15 +136,19 @@ exports.homeModel = () => `
     const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
     const linkTask1 = create("a", "UI/UX");
     const linkTask2 = create("a", "Website Scraping");
+    const linkTask3 = create("a", "Source Code");
 
     linkTask1.setAttribute('href', '/task1');
     linkTask2.setAttribute('href', '/task2');
-    setAttr([linkTask1, linkTask2], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
+    linkTask3.setAttribute('href', 'https://github.com/rubanero14/get-latest-currency-details');
+    setAttr([linkTask1, linkTask2, linkTask3], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
 
     appendInto(linkWrapper, [
         linkTask1,
         create("br"),
-        linkTask2
+        linkTask2,
+        create("br"),
+        linkTask3
     ]);
     appendInto(body, [
         title,
