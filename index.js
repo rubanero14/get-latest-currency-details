@@ -17,6 +17,10 @@ app.get("/task1/screen6", async (req, res, next) => {
   res.send(template(layout.screen6Model(), "Screen 6"));
 });
 
+app.get("/task1/wireframe", async (req, res, next) => {
+  res.send(template(layout.wireframeModel(), "Wireframe"));
+});
+
 app.get("/task1", async (req, res, next) => {
   res.redirect("/task1/screen1");
 });

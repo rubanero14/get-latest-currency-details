@@ -130,21 +130,16 @@ exports.currencyModel = async (timerInMiliseconds = 60 * 60 * 2 * 1000) => {
     `;
 };
 
-exports.homeModel = () => `
+exports.wireframeModel = () => `
     const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
-    const title = create("h1", "Tasks", "text-center text-light mb-5");
-    const title2 = create("h2", "UI/UX Wireframe", "text-center text-light mb-3");
+    const title = create("h1", "UI/UX Wireframe", "text-center text-light mb-3");
     const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
-    const linkTask1 = create("a", "UI/UX");
-    const linkTask2 = create("a", "Website Scraping");
-    const linkTask3 = create("a", "Source Code");
-
-    linkTask1.setAttribute('href', '/task1');
-    linkTask2.setAttribute('href', '/task2');
-    linkTask3.setAttribute('href', 'https://github.com/rubanero14/get-latest-currency-details');
-    setAttr([linkTask1, linkTask2, linkTask3], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
-
+    const linkTask1 = create("a", "UI/UX Task");
     const pdf = create("embed", null, "text-center w-100 card mb-3");
+
+    linkTask1.setAttribute('href', '/task1/screen1');
+
+    setAttr([linkTask1], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
     setAttr([pdf], {
         "src": "https://drive.google.com/file/d/1SGjFyFTEqYCvfuxXNOrnzeCuVKe5CBQ0/preview",
         "width": 500,
@@ -155,6 +150,29 @@ exports.homeModel = () => `
 
     appendInto(linkWrapper, [
         linkTask1,
+    ]);
+    appendInto(body, [
+        title,
+        pdf,
+        linkWrapper,
+    ]);
+`;
+
+exports.homeModel = () => `
+    const [create, appendInto, setAttr] = [${util.create}, ${util.appendInto}, ${util.setAttr}];
+    const title = create("h1", "Tasks", "text-center text-light mb-5");
+    const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
+    const linkTask1 = create("a", "UI/UX");
+    const linkTask2 = create("a", "Website Scraping");
+    const linkTask3 = create("a", "Source Code");
+
+    linkTask1.setAttribute('href', '/task1/wireframe');
+    linkTask2.setAttribute('href', '/task2');
+    linkTask3.setAttribute('href', 'https://github.com/rubanero14/get-latest-currency-details');
+    setAttr([linkTask1, linkTask2, linkTask3], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
+
+    appendInto(linkWrapper, [
+        linkTask1,
         create("br"),
         linkTask2,
         create("br"),
@@ -162,10 +180,7 @@ exports.homeModel = () => `
     ]);
     appendInto(body, [
         title,
-        linkWrapper,
-        create('br'),
-        title2,
-        pdf
+        linkWrapper
     ]);
 `;
 
