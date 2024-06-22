@@ -1,4 +1,9 @@
 const playwright = require("playwright");
+const axios = require("axios");
+
+// Environment Variables config enablement
+require("dotenv").config();
+
 /**
  * Scrapes and compiles currency data from source.
  *
@@ -157,7 +162,7 @@ exports.bootstrapFormValidation = () => `
 })()`;
 
 /**
- * Returns a Object of mock currency data for web sracping page
+ * Returns a Object of mock currency data for web scraping page
  *
  * @returns {Object} The Object of mock currency data
  */
@@ -324,3 +329,27 @@ exports.mockData = [
     flag: "https://flaglog.com/codes/standardized-rectangle-120px/ZA.png",
   },
 ];
+
+/**
+ * Makes API call to News API and returns data
+ *
+ * @returns {Object} The Object of news data
+ */
+exports.fetchNewsAPI = async (opt = "all", searchQueryOrcategory = "my") => {
+  let url, data;
+  switch (opt) {
+    case "top":
+      url = `https://newsapi.org/v2/top-headlines?category=${searchQueryOrcategory}&country=us&apiKey=${process.env.APIKEY}`;
+      break;
+    case "all":
+    default:
+      url = `https://newsapi.org/v2/everything?q=${searchQueryOrcategory}&apiKey=${process.env.APIKEY}`;
+  }
+
+  await axios
+    .get(url)
+    .then((res) => (data = res.data.articles))
+    .catch((err) => console.log(err));
+
+  return data;
+};
