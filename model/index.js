@@ -164,12 +164,14 @@ exports.homeModel = () => `
     const linkWrapper = create("div", null, "d-block d-md-flex justify-content-center");
     const linkTask1 = create("a", "UI/UX");
     const linkTask2 = create("a", "Website Scraping");
-    const linkTask3 = create("a", "Source Code");
+    const linkTask3 = create("a", "News API");
+    const linkTask4 = create("a", "Source Code");
 
     linkTask1.setAttribute('href', '/task1/wireframe');
     linkTask2.setAttribute('href', '/task2');
-    linkTask3.setAttribute('href', 'https://github.com/rubanero14/get-latest-currency-details');
-    setAttr([linkTask1, linkTask2, linkTask3], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
+    linkTask3.setAttribute('href', '/newsapi');
+    linkTask4.setAttribute('href', 'https://github.com/rubanero14/get-latest-currency-details');
+    setAttr([linkTask1, linkTask2, linkTask3, linkTask4], { 'class': 'mainNav btn btn-custom text-center me-2 p-1 mb-3'});
 
     appendInto(linkWrapper, [
         linkTask1,
@@ -177,6 +179,8 @@ exports.homeModel = () => `
         linkTask2,
         create("br"),
         linkTask3,
+        create("br"),
+        linkTask4
     ]);
     appendInto(body, [
         title,
@@ -336,3 +340,47 @@ exports.notFoundModel = () => `
         linkWrapper
     ]);
 `;
+
+exports.newsAPIModel = () => `
+    <style>
+      form {
+        padding: 30px;
+      }
+      select, button, input {
+        width: 300px;
+      }
+    </style>
+    <form method="POST" action="/newsapi/result">
+      <select name="feedType">
+        <option selected disabled>Choose a Feed Type</option>
+        <option value="all">Everything</option>
+        <option value="top">Headlines</option>
+      </select>
+      <br/><br/>
+      <input placeholder="Search" type="text" name="searchQuery"/>
+      <br/><br/>
+      <select name="category" class="hidden">
+        <option selected disabled>Choose a category</option>
+        <option value="business">Business</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="health">Health</option>
+        <option value="science">Science</option>
+        <option value="sports">Sports</option>
+        <option value="technology">Technology</option>
+        <option value="general">General</option>
+      </select> 
+      <br class="hidden"/><br class="hidden"/>
+      <button>Submit</button>
+    </form>
+    <script>
+      const type = document.querySelector('[name="feedType"]');
+      const category = document.querySelectorAll('.hidden');
+      type.addEventListener('change', (e) => {
+        if(e.target.value === 'all') {
+          category.forEach(cat => cat.style.display = 'none');
+        } else {
+          category.forEach(cat => cat.style.display = 'block');
+        }
+      })
+    </script>
+  `;

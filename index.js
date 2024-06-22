@@ -20,49 +20,7 @@ app.post("/newsapi/result", async (req, res, next) => {
 });
 
 app.get("/newsapi/", async (req, res, next) => {
-  res.send(`
-    <style>
-      form {
-        padding: 30px;
-      }
-      select, button, input {
-        width: 300px;
-      }
-    </style>
-    <form method="POST" action="/newsapi/result">
-      <select name="feedType">
-        <option selected disabled>Choose a Feed Type</option>
-        <option value="all">Everything</option>
-        <option value="top">Headlines</option>
-      </select>
-      <br/><br/>
-      <input placeholder="Search" type="text" name="searchQuery"/>
-      <br/><br/>
-      <select name="category" class="hidden">
-        <option selected disabled>Choose a category</option>
-        <option value="business">Business</option>
-        <option value="entertainment">Entertainment</option>
-        <option value="health">Health</option>
-        <option value="science">Science</option>
-        <option value="sports">Sports</option>
-        <option value="technology">Technology</option>
-        <option value="general">General</option>
-      </select> 
-      <br class="hidden"/><br class="hidden"/>
-      <button>Submit</button>
-    </form>
-    <script>
-      const type = document.querySelector('[name="feedType"]');
-      const category = document.querySelectorAll('.hidden');
-      type.addEventListener('change', (e) => {
-        if(e.target.value === 'all') {
-          category.forEach(cat => cat.style.display = 'none');
-        } else {
-          category.forEach(cat => cat.style.display = 'block');
-        }
-      })
-    </script>
-  `);
+  res.send(layout.newsAPIModel(), "News API");
 });
 
 app.get("/task1/screen1", async (req, res, next) => {
